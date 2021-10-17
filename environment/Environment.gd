@@ -12,7 +12,6 @@ func _process(delta):
 	
 	if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
 		if (is_mouse_pressed == false):
-			print(position2D)
 			spawnOrMoveTarget(position2D)
 		
 		is_mouse_pressed = true
