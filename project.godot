@@ -1,0 +1,98 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "AStarNavigation",
+"language": "GDScript",
+"path": "res://AStarNavigation.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ContributorClass",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/ContributorClass.gd"
+}, {
+"base": "PanelContainer",
+"class": "GistItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/GistItem.gd"
+}, {
+"base": "HBoxContainer",
+"class": "InvitationItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/InvitationItem.gd"
+}, {
+"base": "Reference",
+"class": "KinematicBehaviour",
+"language": "GDScript",
+"path": "res://Movement/KinematicBehaviour.gd"
+}, {
+"base": "KinematicBehaviour",
+"class": "KinematicFlee",
+"language": "GDScript",
+"path": "res://Movement/KinematicFlee.gd"
+}, {
+"base": "KinematicBehaviour",
+"class": "KinematicSeek",
+"language": "GDScript",
+"path": "res://Movement/KinematicSeek.gd"
+}, {
+"base": "PanelContainer",
+"class": "RepositoryItem",
+"language": "GDScript",
+"path": "res://addons/github-integration/scripts/RepositoryItem.gd"
+}, {
+"base": "Reference",
+"class": "SteeringOutput",
+"language": "GDScript",
+"path": "res://Movement/SteeringOutput.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Unit2D",
+"language": "GDScript",
+"path": "res://Unit/Unit.gd"
+} ]
+_global_script_class_icons={
+"AStarNavigation": "",
+"ContributorClass": "",
+"GistItem": "",
+"InvitationItem": "",
+"KinematicBehaviour": "",
+"KinematicFlee": "",
+"KinematicSeek": "",
+"RepositoryItem": "",
+"SteeringOutput": "",
+"Unit2D": ""
+}
+
+[application]
+
+config/name="StrategyGame"
+run/main_scene="res://Environment.tscn"
+config/icon="res://icon.png"
+
+[global]
+
+collis=false
+
+[layer_names]
+
+2d_render/layer_1="units"
+2d_physics/layer_1="units"
+2d_render/layer_2="walls"
+2d_physics/layer_2="walls"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
