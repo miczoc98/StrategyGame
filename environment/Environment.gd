@@ -1,18 +1,13 @@
 extends Node
 
+signal target_spawned(target)
 
 var target := load("res://Target.tscn")
 var targetInstance: Node2D = null
 
-
 var is_mouse_pressed: bool = false;
 
-signal target_spawned(target)
-
-
 func _process(delta):
-	#print("processing environment")
-
 	var position2D = get_viewport().get_mouse_position()
 	
 	if (Input.is_mouse_button_pressed(BUTTON_LEFT)):

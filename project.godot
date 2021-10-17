@@ -9,73 +9,55 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Reference",
 "class": "AStarNavigation",
 "language": "GDScript",
-"path": "res://AStarNavigation.gd"
-}, {
-"base": "HBoxContainer",
-"class": "ContributorClass",
-"language": "GDScript",
-"path": "res://addons/github-integration/scripts/ContributorClass.gd"
-}, {
-"base": "PanelContainer",
-"class": "GistItem",
-"language": "GDScript",
-"path": "res://addons/github-integration/scripts/GistItem.gd"
-}, {
-"base": "HBoxContainer",
-"class": "InvitationItem",
-"language": "GDScript",
-"path": "res://addons/github-integration/scripts/InvitationItem.gd"
+"path": "res://environment/AStarNavigation.gd"
 }, {
 "base": "Reference",
 "class": "KinematicBehaviour",
 "language": "GDScript",
-"path": "res://Movement/KinematicBehaviour.gd"
+"path": "res://movement/KinematicBehaviour.gd"
 }, {
-"base": "KinematicBehaviour",
+"base": "Reference",
 "class": "KinematicFlee",
 "language": "GDScript",
-"path": "res://Movement/KinematicFlee.gd"
+"path": "res://movement/KinematicFlee.gd"
 }, {
 "base": "KinematicBehaviour",
 "class": "KinematicSeek",
 "language": "GDScript",
-"path": "res://Movement/KinematicSeek.gd"
-}, {
-"base": "PanelContainer",
-"class": "RepositoryItem",
-"language": "GDScript",
-"path": "res://addons/github-integration/scripts/RepositoryItem.gd"
+"path": "res://movement/KinematicSeek.gd"
 }, {
 "base": "Reference",
 "class": "SteeringOutput",
 "language": "GDScript",
-"path": "res://Movement/SteeringOutput.gd"
+"path": "res://movement/SteeringOutput.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Unit2D",
 "language": "GDScript",
-"path": "res://Unit/Unit.gd"
+"path": "res://unit/unit.gd"
+}, {
+"base": "Node2D",
+"class": "UnitNavigation",
+"language": "GDScript",
+"path": "res://unit/navigation.gd"
 } ]
 _global_script_class_icons={
 "AStarNavigation": "",
-"ContributorClass": "",
-"GistItem": "",
-"InvitationItem": "",
 "KinematicBehaviour": "",
 "KinematicFlee": "",
 "KinematicSeek": "",
-"RepositoryItem": "",
 "SteeringOutput": "",
-"Unit2D": ""
+"Unit2D": "",
+"UnitNavigation": ""
 }
 
 [application]
 
 config/name="StrategyGame"
-run/main_scene="res://Environment.tscn"
+run/main_scene="res://environment/Environment.tscn"
 config/icon="res://icon.png"
 
 [global]
