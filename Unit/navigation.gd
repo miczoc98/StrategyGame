@@ -20,8 +20,8 @@ func get_steering() -> SteeringOutput:
 	else:
 		return SteeringOutput.new()
 
-func set_new_target(target: Node2D) -> void:
-	path_to_follow = nav.get_path_to_target(self.global_position, target.position)
+func set_new_target(target: Vector2) -> void:
+	path_to_follow = nav.get_path_to_target(self.global_position, target)
 	behaviour._target = path_to_follow[0]
 	emit_signal("new_path_generated", path_to_follow)
 	

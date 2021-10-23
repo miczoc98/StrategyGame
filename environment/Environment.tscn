@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tilemaps/basic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Unit/Unit2D.tscn" type="PackedScene" id=2]
-[ext_resource path="res://environment/Environment.gd" type="Script" id=3]
 [ext_resource path="res://environment/AStarNavigation.gd" type="Script" id=4]
+[ext_resource path="res://UnitDetails.tscn" type="PackedScene" id=5]
+[ext_resource path="res://environment/Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://environment/UnitController.gd" type="Script" id=7]
 
 [node name="Environment" type="Node2D"]
-script = ExtResource( 3 )
 
 [node name="Navigation" type="Node2D" parent="."]
 script = ExtResource( 4 )
@@ -23,3 +24,21 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [node name="Unit2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 190.043, 435.584 )
 collision_mask = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 531.59, 354.172 )
+current = true
+script = ExtResource( 6 )
+
+[node name="UnitController" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Unit2D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 858.966, 165.469 )
+collision_mask = 3
+
+[node name="Unit2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 257.925, 200.825 )
+collision_mask = 3
+
+[node name="UnitDetails" parent="." instance=ExtResource( 5 )]
