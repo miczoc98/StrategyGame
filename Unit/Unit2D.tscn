@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/icon.png" type="Texture" id=1]
 [ext_resource path="res://unit/Unit2D.gd" type="Script" id=2]
@@ -9,6 +9,9 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 21.6312
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 25.1793
 
 [node name="Unit2D" type="KinematicBody2D" groups=[
 "player_unit",
@@ -32,7 +35,15 @@ script = ExtResource( 4 )
 [node name="PathVisualization" type="Node2D" parent="Navigation"]
 script = ExtResource( 3 )
 
+[node name="GroundTypeDetector" type="Area2D" parent="Navigation"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Navigation/GroundTypeDetector"]
+shape = SubResource( 2 )
+
 [connection signal="mouse_entered" from="." to="." method="_on_Unit2D_mouse_entered"]
 [connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Unit2D_mouse_exited"]
 [connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
+[connection signal="body_entered" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_entered"]
+[connection signal="body_exited" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_exited"]

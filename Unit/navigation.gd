@@ -6,6 +6,9 @@ signal new_path_generated(path)
 var nav: AStarNavigation = null
 
 var _max_speed := 100.0
+var _max_speed_in_mountains = 50.0
+var _mountain_node_counter = 0
+
 var behaviour: KinematicBehaviour = null
 var path_to_follow: PoolVector2Array = PoolVector2Array()
 
@@ -29,3 +32,15 @@ func on_target_reached():
 	if (path_to_follow.size() > 0):
 		behaviour._target = path_to_follow[0]
 		path_to_follow.remove(0)
+
+
+func _on_GroundTypeDetector_body_entered(body):
+	if _is_mountain(body):
+		behaviour._max_speed = _max_speed_in_mountains
+		
+func _on_GroundTypeDetector_body_exited(body):
+	if _is_mountain(body):
+		behaviour._max_speed = _max_speed
+		
+func _is_mountain(body: Node2D):
+	return body is TileMap and body.collision_layer == 4

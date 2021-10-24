@@ -13,8 +13,8 @@ func init(character: Node2D, target: Vector2, max_speed: float):
 func _getSteering() -> SteeringOutput:
 	var steering = SteeringOutput.new()
 	
-	var velocity: Vector2 = (_target - _character.global_position)/time_to_target_in_seconds
-	if velocity.length() > satisfaction_radius:
+	var velocity: Vector2 = (_target - _character.global_position).normalized() * _max_speed
+	if (_target - _character.global_position).length() > satisfaction_radius:
 		steering.linearVelocity = velocity.normalized() * clamp(velocity.length(), -_max_speed, _max_speed)
 	else:
 		steering.linearVelocity = Vector2.ZERO
