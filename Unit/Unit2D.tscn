@@ -5,7 +5,7 @@
 [ext_resource path="res://unit/PathVisualization.gd" type="Script" id=3]
 [ext_resource path="res://unit/navigation.gd" type="Script" id=4]
 [ext_resource path="res://unit/Statistics.gd" type="Script" id=5]
-[ext_resource path="res://Unit/Sprite.gd" type="Script" id=6]
+[ext_resource path="res://unit/Gathering.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 21.6312
@@ -17,11 +17,11 @@ radius = 25.1793
 "player_unit",
 ]]
 input_pickable = true
+collision_mask = 15
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-script = ExtResource( 6 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -41,9 +41,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Navigation/GroundTypeDetector"]
 shape = SubResource( 2 )
 
+[node name="Gathering" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
 [connection signal="mouse_entered" from="." to="." method="_on_Unit2D_mouse_entered"]
-[connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Unit2D_mouse_exited"]
-[connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
 [connection signal="body_entered" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_entered"]
 [connection signal="body_exited" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_exited"]

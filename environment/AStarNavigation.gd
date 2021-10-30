@@ -14,7 +14,7 @@ var point_ids_by_position_in_tilemap := Dictionary()
 var last_id := 0
 
 func _ready():
-	collision_probe.set_collision_mask(MaskCalculator.sum([2]))
+	collision_probe.set_collision_mask(MaskCalculator.sum([2, 4]))
 	
 	var tiles = ground_map.get_used_cells_by_id(WALKABLE_CELLS_ID)
 
@@ -94,3 +94,8 @@ func _on_Trees_tree_destroyed(position):
 	Astar.add_point(last_id, _get_tile_position(position))
 	point_ids_by_position_in_tilemap[position] = last_id
 	_create_neighbours_connections(position)
+
+
+func _on_BuildingGrid_object_placed(collision_cells):
+	for cell in collision_cells:
+		Astar.remove_point(point_ids_by_position_in_tilemap[cell])
