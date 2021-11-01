@@ -11,7 +11,7 @@ var cost := {"wood": 50, "stone": 50}
 
 func _init():
 	collision_layer = 4
-	collision_mask = MaskCalculator.sum([1, 2, 3, 4])
+	collision_mask = MaskCalculator.sum([1, 2, 3, 4, 5, 6])
 
 func take_damage(damage: int):
 	health -= damage

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var building_grid: BuildingGrid = $"/root/Environment/Navigation/BuildingGrid"
+onready var building_grid: BuildingGrid = $"/root/Environment/Navigation/Buildings"
 onready var resources: ResourceManager = $"../Resources"
 
 var is_building_mode_on := false

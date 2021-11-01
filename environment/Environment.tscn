@@ -1,18 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://tilemaps/basic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Unit/Unit2D.tscn" type="PackedScene" id=2]
-[ext_resource path="res://environment/CollisionProbe.gd" type="Script" id=3]
-[ext_resource path="res://environment/AStarNavigation.gd" type="Script" id=4]
+[ext_resource path="res://environment/navigation/CollisionProbe.gd" type="Script" id=3]
+[ext_resource path="res://environment/navigation/AStarNavigation.gd" type="Script" id=4]
 [ext_resource path="res://player/GUI/UnitDetails.tscn" type="PackedScene" id=5]
 [ext_resource path="res://environment/Camera2D.gd" type="Script" id=6]
-[ext_resource path="res://environment/UnitController.gd" type="Script" id=7]
-[ext_resource path="res://environment/Trees.gd" type="Script" id=8]
-[ext_resource path="res://environment/Resources.gd" type="Script" id=9]
+[ext_resource path="res://player/UnitController.gd" type="Script" id=7]
+[ext_resource path="res://environment/maps/Trees.gd" type="Script" id=8]
+[ext_resource path="res://player/Resources.gd" type="Script" id=9]
 [ext_resource path="res://player/GUI/ResourcesUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://player/GUI/BuildingMode.tscn" type="PackedScene" id=11]
-[ext_resource path="res://environment/BuildingPlacement.gd" type="Script" id=12]
-[ext_resource path="res://BuildingGrid.tscn" type="PackedScene" id=13]
+[ext_resource path="res://player/BuildingPlacement.gd" type="Script" id=12]
+[ext_resource path="res://environment/maps/BuildingGrid.tscn" type="PackedScene" id=13]
+[ext_resource path="res://environment/maps/Mountains.gd" type="Script" id=14]
+[ext_resource path="res://environment/maps/Food.gd" type="Script" id=15]
 
 [node name="Environment" type="Node2D"]
 
@@ -33,6 +35,9 @@ script = ExtResource( 9 )
 z_index = 2
 script = ExtResource( 12 )
 
+[node name="UnitController" type="Node2D" parent="Player"]
+script = ExtResource( 7 )
+
 [node name="Navigation" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
@@ -45,7 +50,7 @@ tile_data = PoolIntArray( -196614, 2, 0, -196613, 2, 0, -196612, 2, 0, -196611, 
 [node name="Trees" type="TileMap" parent="Navigation"]
 tile_set = ExtResource( 1 )
 show_collision = true
-collision_layer = 2
+collision_layer = 6
 format = 1
 tile_data = PoolIntArray( -196589, 3, 0, -196588, 3, 0, -196587, 3, 0, -196586, 3, 0, -196585, 3, 0, -196584, 3, 0, -131053, 3, 0, -131052, 3, 0, -131051, 3, 0, -131050, 3, 0, -131049, 3, 0, -131048, 3, 0, -65517, 3, 0, -65516, 3, 0, -65515, 3, 0, -65514, 3, 0, -65513, 3, 0, -65512, 3, 0, 20, 3, 0, 21, 3, 0, 22, 3, 0, 23, 3, 0, 24, 3, 0, 65541, 3, 0, 65542, 3, 0, 65557, 3, 0, 65558, 3, 0, 65559, 3, 0, 65560, 3, 0, 131077, 3, 0, 131078, 3, 0, 131094, 3, 0, 131095, 3, 0, 131096, 3, 0, 655380, 3, 0, 655381, 3, 0, 655382, 3, 0, 655383, 3, 0, 655384, 3, 0, 720915, 3, 0, 720916, 3, 0, 786451, 3, 0, 851987, 3, 0, 851990, 3, 0, 917523, 3, 0, 917526, 3, 0, 983059, 3, 0, 983062, 3, 0, 1048595, 3, 0, 1048597, 3, 0, 1048598, 3, 0, 1114131, 3, 0, 1114132, 3, 0, 1114133, 3, 0 )
 script = ExtResource( 8 )
@@ -53,12 +58,21 @@ script = ExtResource( 8 )
 [node name="Mountains" type="TileMap" parent="Navigation"]
 tile_set = ExtResource( 1 )
 show_collision = true
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 458762, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 589832, 4, 0, 589833, 4, 0, 655368, 4, 0, 786437, 4, 0, 786438, 4, 0, 917501, 4, 0, 851970, 4, 0, 851971, 4, 0, 851972, 4, 0, 851973, 4, 0, 851974, 4, 0, 851975, 4, 0, 983037, 4, 0, 917505, 4, 0, 917506, 4, 0, 917507, 4, 0, 917508, 4, 0, 917509, 4, 0, 917510, 4, 0, 917511, 4, 0, 983041, 4, 0, 983042, 4, 0, 983043, 4, 0, 983044, 4, 0, 983045, 4, 0, 983046, 4, 0, 983047, 4, 0, 983048, 4, 0, 983049, 4, 0, 983052, 4, 0, 983053, 4, 0, 1114110, 4, 0, 1114111, 4, 0, 1048576, 4, 0, 1048577, 4, 0, 1048578, 4, 0, 1048579, 4, 0, 1048580, 4, 0, 1048581, 4, 0, 1048582, 4, 0, 1048583, 4, 0, 1048584, 4, 0, 1048585, 4, 0, 1048586, 4, 0, 1048587, 4, 0, 1048588, 4, 0, 1179643, 4, 0, 1179644, 4, 0, 1179645, 4, 0 )
+tile_data = PoolIntArray( 458762, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 589832, 4, 0, 589833, 4, 0, 655368, 4, 0, 786437, 4, 0, 786438, 5, 0, 917501, 4, 0, 851970, 4, 0, 851971, 4, 0, 851972, 4, 0, 851973, 4, 0, 851974, 4, 0, 851975, 4, 0, 983037, 4, 0, 917505, 4, 0, 917506, 4, 0, 917507, 5, 0, 917508, 4, 0, 917509, 4, 0, 917510, 4, 0, 917511, 5, 0, 983041, 4, 0, 983042, 4, 0, 983043, 4, 0, 983044, 4, 0, 983045, 4, 0, 983046, 4, 0, 983047, 4, 0, 983048, 4, 0, 983049, 4, 0, 983052, 4, 0, 983053, 4, 0, 1114110, 4, 0, 1114111, 4, 0, 1048576, 4, 0, 1048577, 4, 0, 1048578, 4, 0, 1048579, 4, 0, 1048580, 4, 0, 1048581, 4, 0, 1048582, 4, 0, 1048583, 4, 0, 1048584, 4, 0, 1048585, 4, 0, 1048586, 4, 0, 1048587, 4, 0, 1048588, 4, 0, 1179643, 4, 0, 1179644, 4, 0, 1179645, 4, 0 )
+script = ExtResource( 14 )
 
-[node name="BuildingGrid" parent="Navigation" instance=ExtResource( 13 )]
+[node name="Berries" type="TileMap" parent="Navigation"]
+tile_set = ExtResource( 1 )
+collision_layer = 32
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65544, 6, 0, 131084, 6, 0, 262153, 6, 0, 393227, 6, 0 )
+script = ExtResource( 15 )
+
+[node name="Buildings" parent="Navigation" instance=ExtResource( 13 )]
 
 [node name="CollisionProbe" type="Node2D" parent="Navigation"]
 script = ExtResource( 3 )
@@ -67,25 +81,25 @@ script = ExtResource( 3 )
 
 [node name="RayCast2" type="RayCast2D" parent="Navigation/CollisionProbe"]
 
-[node name="Unit2D" parent="." instance=ExtResource( 2 )]
+[node name="Unit2D" parent="." groups=[
+"player_unit",
+] instance=ExtResource( 2 )]
 position = Vector2( 190.043, 435.584 )
+
+[node name="Unit2D2" parent="." groups=[
+"enemy_unit",
+] instance=ExtResource( 2 )]
+position = Vector2( 344.043, 407.584 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 531.59, 354.172 )
 current = true
 script = ExtResource( 6 )
 
-[node name="UnitController" type="Node2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="Unit2D2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 858.966, 165.469 )
-
-[node name="Unit2D3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 257.925, 200.825 )
-
 [connection signal="building_selected" from="Player/GUI/BuildingMode" to="Player/BuildingPlacement" method="_on_BuildingMode_building_selected"]
 [connection signal="resource_changed" from="Player/Resources" to="Player/GUI/Resources" method="_on_Resources_resource_changed"]
 [connection signal="tree_destroyed" from="Navigation/Trees" to="Player/Resources" method="_on_Trees_tree_destroyed"]
 [connection signal="tree_destroyed" from="Navigation/Trees" to="Navigation" method="_on_Trees_tree_destroyed"]
-[connection signal="object_placed" from="Navigation/BuildingGrid" to="Navigation" method="_on_BuildingGrid_object_placed"]
+[connection signal="stone_gathered" from="Navigation/Mountains" to="Player/Resources" method="_on_stone_gathered"]
+[connection signal="food_gathered" from="Navigation/Berries" to="Player/Resources" method="_on_food_gathered"]
+[connection signal="object_placed" from="Navigation/Buildings" to="Navigation" method="_on_BuildingGrid_object_placed"]

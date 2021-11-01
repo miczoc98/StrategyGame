@@ -1,6 +1,7 @@
 extends Building
 
 func _ready():
+	add_to_group("Castle")
 	health = 15
 	cost = {"wood": 50, "stone": 100}
 

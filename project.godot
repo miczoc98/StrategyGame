@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Reference",
 "class": "AStarNavigation",
 "language": "GDScript",
-"path": "res://environment/AStarNavigation.gd"
+"path": "res://environment/navigation/AStarNavigation.gd"
+}, {
+"base": "Reference",
+"class": "Arrays",
+"language": "GDScript",
+"path": "res://algorithms/Arrays.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Building",
@@ -22,12 +27,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "BuildingGrid",
 "language": "GDScript",
-"path": "res://BuildingGrid.gd"
+"path": "res://environment/maps/BuildingGrid.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "CollisionProbe",
 "language": "GDScript",
-"path": "res://environment/CollisionProbe.gd"
+"path": "res://environment/navigation/CollisionProbe.gd"
+}, {
+"base": "Reference",
+"class": "Gatherable",
+"language": "GDScript",
+"path": "res://resources/Gatherable.gd"
 }, {
 "base": "Node2D",
 "class": "Gathering",
@@ -54,10 +64,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://MaskCalculator.gd"
 }, {
+"base": "Reference",
+"class": "Nodes",
+"language": "GDScript",
+"path": "res://algorithms/Nodes.gd"
+}, {
 "base": "Node2D",
 "class": "ResourceManager",
 "language": "GDScript",
-"path": "res://environment/Resources.gd"
+"path": "res://player/Resources.gd"
+}, {
+"base": "Reference",
+"class": "Resources",
+"language": "GDScript",
+"path": "res://resources/Resources.gd"
 }, {
 "base": "Node2D",
 "class": "Statistics",
@@ -68,6 +88,11 @@ _global_script_classes=[ {
 "class": "SteeringOutput",
 "language": "GDScript",
 "path": "res://movement/SteeringOutput.gd"
+}, {
+"base": "TileMap",
+"class": "TileMapWithResources",
+"language": "GDScript",
+"path": "res://environment/maps/TileMapWithResources.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Unit2D",
@@ -81,17 +106,22 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AStarNavigation": "",
+"Arrays": "",
 "Building": "",
 "BuildingGrid": "",
 "CollisionProbe": "",
+"Gatherable": "",
 "Gathering": "",
 "KinematicBehaviour": "",
 "KinematicFlee": "",
 "KinematicSeek": "",
 "MaskCalculator": "",
+"Nodes": "",
 "ResourceManager": "",
+"Resources": "",
 "Statistics": "",
 "SteeringOutput": "",
+"TileMapWithResources": "",
 "Unit2D": "",
 "UnitNavigation": ""
 }
@@ -131,6 +161,7 @@ secondary_action={
 2d_physics/layer_2="walls"
 2d_physics/layer_3="trees"
 2d_physics/layer_4="buildings"
+2d_physics/layer_5="mountains"
 
 [physics]
 

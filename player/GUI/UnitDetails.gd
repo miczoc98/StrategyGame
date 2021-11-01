@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var stat_panel: GridContainer = $Background/Panel
 
 func _ready():
-	$"/root/Environment/UnitController".connect("unit_selected", self, "_on_unit_selected")
+	$"/root/Environment/Player/UnitController".connect("unit_selected", self, "_on_unit_selected")
 
 func _on_unit_selected(unit: Unit2D):
 	_remove_labels()

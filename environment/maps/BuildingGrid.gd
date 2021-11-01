@@ -19,6 +19,21 @@ func place_building(building: Building):
 	var collider_shape = building.get_collision_rectangle()
 	emit_signal("object_placed", _get_colliding_cells(building.position + collider_shape[0], collider_shape[1]))	
 
+
+# returns dictionary containing position and distance to it
+# dictionary has keys "position" and "distance"
+func get_closest_building(position: Vector2, building_type: String) -> Dictionary:
+	var children = get_children()
+	var closest_building = {"position": null, "distance": INF}
+	for child in children:
+		if child.is_in_group(building_type):
+			var distance_to_building = position.distance_to(child.global_position)
+			if (distance_to_building < closest_building["distance"]):
+				closest_building = {"position": child.global_position, "distance": distance_to_building}
+				
+	return closest_building
+	
+
 func _get_colliding_cells(offset: Vector2, shape: Vector2) -> Array:
 	var colliding_cells = []  
 	var bounding_box = [offset-shape, offset + shape]
