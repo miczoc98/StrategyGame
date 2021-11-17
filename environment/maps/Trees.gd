@@ -18,5 +18,3 @@ func destroy_tree(cell_vector: Vector2):
 	set_cellv(cell_vector, -1)
 	tiles.erase(cell_vector)
 	emit_signal("tree_destroyed", cell_vector)
-	
-

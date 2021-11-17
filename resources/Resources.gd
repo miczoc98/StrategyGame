@@ -3,7 +3,9 @@ class_name Resources
 static func get_resource(name: String):
 	var resources_by_name = {"wood": Wood, "stone": Stone, "food": Food}
 	return resources_by_name[name].new()
-	
+
+static func get_resources():
+	return [Wood.new(), Stone.new(), Food.new()]
 
 class Wood extends Gatherable:
 	func _init():
@@ -18,6 +20,7 @@ class Stone extends Gatherable:
 		skill_required = "mining"
 		map = "Mountains"
 		layer = 5
+		
 class Food extends Gatherable:
 	func _init():
 		type = "food"

@@ -8,7 +8,7 @@ var resources := {"wood": 100, "stone": 100, "food": 100}
 func _ready():
 	var units = get_tree().get_nodes_in_group("player_unit")
 	for unit in units:
-		unit.get_node("Gathering").connect("resource_deposited", self, "_on_unit_resource_deposited")
+		unit.get_node("StateMachine/Gathering/Deposit").connect("resource_deposited", self, "_on_unit_resource_deposited")
 	
 func change_resource_amount(type: String, amount: int) -> void:
 	if not type in resources.keys():

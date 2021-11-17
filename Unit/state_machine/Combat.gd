@@ -2,7 +2,7 @@ extends Node2D
 
 onready var detector:Area2D = $Detector
 onready var timer:Timer = $Timer
-onready var stats:Statistics = $"../Statistics"
+onready var stats:Statistics = owner.get_node("Statistics")
 
 var enemy_group = ""
 
@@ -13,7 +13,7 @@ func _ready():
 		enemy_group = "player_unit"
 
 
-func _process(delta):
+func process(delta: float):
 	if not detector.get_overlapping_bodies().empty():
 		if (timer.is_stopped()):
 			timer.start()

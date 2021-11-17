@@ -68,9 +68,9 @@ func get_path_to_target(position: Vector2, target: Vector2):
 	path.append_array(Astar.get_point_path(start_node, end_node))
 	
 	path.append(target)
-	return optimize_path(path)
+	return _optimize_path(path)
 	
-func optimize_path(path: Array) -> Array:
+func _optimize_path(path: Array) -> Array:
 	if path.size() == 2:
 		return path
 	
@@ -89,7 +89,7 @@ func optimize_path(path: Array) -> Array:
 	return output_path
 
 
-func _on_Trees_tree_destroyed(position):
+func _on_tree_destroyed(position):
 	last_id = last_id + 1
 	Astar.add_point(last_id, _get_tile_position(position))
 	point_ids_by_position_in_tilemap[position] = last_id

@@ -5,8 +5,8 @@ signal died()
 
 var generator := RandomNumberGenerator.new()
 
-var _max_health = 100
-var _health = 100
+var _max_health = 100.0
+var _health = 100.0
 
 var unit_name: String = ""
 var stats: Dictionary = {"mining": 0, "woodcutting": 0, "gathering": 0,
@@ -19,6 +19,7 @@ func _init():
 
 
 func take_damage(amount: int):
+	$HP.value = _health/_max_health
 	_health -= amount
 	if (_health <= 0):
 		_die()

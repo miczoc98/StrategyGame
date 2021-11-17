@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
+"base": "Node2D",
 "class": "AStarNavigation",
 "language": "GDScript",
 "path": "res://environment/navigation/AStarNavigation.gd"
@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://environment/maps/BuildingGrid.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "CollisionProbe",
 "language": "GDScript",
 "path": "res://environment/navigation/CollisionProbe.gd"
@@ -39,10 +39,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/Gatherable.gd"
 }, {
-"base": "Node2D",
+"base": "State",
 "class": "Gathering",
 "language": "GDScript",
-"path": "res://unit/Gathering.gd"
+"path": "res://unit/state_machine/Gathering.gd"
+}, {
+"base": "Job",
+"class": "GatheringJob",
+"language": "GDScript",
+"path": "res://jobs/GatheringJob.gd"
+}, {
+"base": "Reference",
+"class": "Job",
+"language": "GDScript",
+"path": "res://jobs/Job.gd"
+}, {
+"base": "HSlider",
+"class": "JobSlider",
+"language": "GDScript",
+"path": "res://player/GUI/unit_assignment/JobSlider.gd"
+}, {
+"base": "Reference",
+"class": "Jobs",
+"language": "GDScript",
+"path": "res://jobs/Jobs.gd"
 }, {
 "base": "Reference",
 "class": "KinematicBehaviour",
@@ -80,6 +100,16 @@ _global_script_classes=[ {
 "path": "res://resources/Resources.gd"
 }, {
 "base": "Node2D",
+"class": "State",
+"language": "GDScript",
+"path": "res://unit/state_machine/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://unit/state_machine/StateMachine.gd"
+}, {
+"base": "Node2D",
 "class": "Statistics",
 "language": "GDScript",
 "path": "res://unit/Statistics.gd"
@@ -100,9 +130,14 @@ _global_script_classes=[ {
 "path": "res://unit/Unit2D.gd"
 }, {
 "base": "Node2D",
+"class": "UnitJob",
+"language": "GDScript",
+"path": "res://unit/Job.gd"
+}, {
+"base": "Node2D",
 "class": "UnitNavigation",
 "language": "GDScript",
-"path": "res://unit/navigation.gd"
+"path": "res://unit/navigation/navigation.gd"
 } ]
 _global_script_class_icons={
 "AStarNavigation": "",
@@ -112,6 +147,10 @@ _global_script_class_icons={
 "CollisionProbe": "",
 "Gatherable": "",
 "Gathering": "",
+"GatheringJob": "",
+"Job": "",
+"JobSlider": "",
+"Jobs": "",
 "KinematicBehaviour": "",
 "KinematicFlee": "",
 "KinematicSeek": "",
@@ -119,10 +158,13 @@ _global_script_class_icons={
 "Nodes": "",
 "ResourceManager": "",
 "Resources": "",
+"State": "",
+"StateMachine": "",
 "Statistics": "",
 "SteeringOutput": "",
 "TileMapWithResources": "",
 "Unit2D": "",
+"UnitJob": "",
 "UnitNavigation": ""
 }
 
