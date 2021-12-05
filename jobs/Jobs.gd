@@ -4,12 +4,13 @@ static func get_job(job_name: String) -> Job:
 	var jobs_by_name = {
 		"woodcutting": WoodcuttingJob,
 		"mining": MiningJob,
-		"food": FoodJob	
+		"food": FoodJob,
+		"exploration": Exploring
 	 }
 	return jobs_by_name[job_name].new()
 	
 static func get_jobs() -> Array:
-	return [WoodcuttingJob.new(), MiningJob.new(), FoodJob.new()]
+	return [WoodcuttingJob.new(), MiningJob.new(), FoodJob.new(), Exploring.new()]
 	
 class WoodcuttingJob extends GatheringJob:
 	func _init():
@@ -28,3 +29,8 @@ class FoodJob extends GatheringJob:
 		name = "food"
 		associated_skill = "gathering"
 		resource = "food"
+
+class Exploring extends ExplorationJob:
+	func _init():
+		name = "exploration"
+		associated_skill = "none"

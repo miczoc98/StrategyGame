@@ -12,9 +12,10 @@ onready var job: UnitJob = $Job
 
 func _ready():
 	navigation.nav = $"/root/Environment/Navigation"
-	
-func set_target(target: Vector2):
-	navigation.set_new_target(target)
+#
+	$StateMachine.start()
+	_propagate_groups()
+
 
 func take_damage(amount: int):
 	stats.take_damage(amount)
@@ -25,6 +26,11 @@ func set_requested_jobs(jobs: Dictionary):
 
 func get_job():
 	return job._current_job;
+
+func _propagate_groups():
+	for child in get_children():
+		for group in get_groups():
+			child.add_to_group(group)
 
 func _on_job_changed(job):
 	print(stats.unit_name + " changed job to " + job.name)

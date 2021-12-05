@@ -1,11 +1,16 @@
 extends Node2D
 class_name Fog
 
+export var is_enabled = true
+
 var _tile_size := 64
 var _fog_patch = preload("res://tilemaps/fog/FogPatch.tscn")
 var _tiles_with_fog = []
 
 func _ready():
+	if not is_enabled:
+		return
+	
 	var ground_map = get_node("../Ground")
 	for tile in ground_map.get_used_cells():
 		_place_fog(tile)
