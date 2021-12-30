@@ -2,6 +2,8 @@ class_name Building
 extends KinematicBody2D
 
 signal destroyed(object)
+signal building_selected(building)
+
 
 var health := 10
 var building_progress := 0
@@ -24,6 +26,12 @@ func modulate_red():
 	
 func modulate_normal():
 	modulate = original_color
+
+# called when building is placed
+# should be overrided
+func on_placed():
+	print_debug("using abstract function")
+	pass
 
 
 # returns array of two Vector2s

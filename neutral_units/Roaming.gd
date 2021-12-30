@@ -6,6 +6,7 @@ var _exploration_radius = 64 * 4
 var _central_point: Vector2
 var _timeout := 5
 
+
 func enter(msg := {}):
 	var _direction = rand.randf_range(0, 360)
 	var _distance = rand.randf_range(0, _exploration_radius)

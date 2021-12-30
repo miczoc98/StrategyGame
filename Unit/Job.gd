@@ -28,8 +28,11 @@ func _on_job_change_timer_timeout():
 			_change_job(job)
 
 
-func _calculate_job_change_willingness(requested_job: Job, requested_number) -> float:	
-	var skill_level = owner.stats.stats[requested_job.associated_skill]
+func _calculate_job_change_willingness(requested_job: Job, requested_number) -> float:
+	var skill_level = 0
+	if requested_job.associated_skill != "none":
+		skill_level = owner.stats.stats[requested_job.associated_skill]
+		
 	var time_from_last_change =  OS.get_ticks_msec() - _last_job_change_time_in_ms
 	
 	return skill_level * job_change_willingness_skill_level_multiplier \
@@ -40,6 +43,8 @@ func _calculate_job_change_willingness(requested_job: Job, requested_number) -> 
 func _change_job(job: Job) -> void:
 	if job is GatheringJob:
 		owner.get_node("StateMachine").change_to("Gathering", {"resource": Resources.get_resource(job.resource)})
+	elif job is ExplorationJob:
+		owner.get_node("StateMachine").change_to("Exploring")
 	
 	_last_job_change_time_in_ms = OS.get_ticks_msec()
 	_current_job = job.name

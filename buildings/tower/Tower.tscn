@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://buildings/tower/Tower.gd" type="Script" id=1]
+[ext_resource path="res://sprites/tower.png" type="Texture" id=2]
+[ext_resource path="res://unit/Damage.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27.9977, 26.0889 )
+
+[node name="Building" type="KinematicBody2D" groups=[
+"building",
+"player",
+]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 32, -32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 32.5637, 32.5637 )
+shape = SubResource( 1 )
+
+[node name="Damage" parent="." instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

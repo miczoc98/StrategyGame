@@ -1,11 +1,13 @@
 extends Node2D
 
-export var show_navigation = true
+export var show_navigation = false
 
 var node_marker_prefab = preload("res://Target.tscn")
 var targets_in_path: Array = []
 
 func _ready():
+	if not show_navigation:
+		return
 	$"..".connect("new_path_generated", self, "on_new_path_generated")
 
 func on_new_path_generated(path: Array):

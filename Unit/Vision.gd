@@ -1,21 +1,31 @@
 class_name Vision
 extends Node2D
 
+signal enemy_detected()
+
 var _enemy_groups := []
+onready var _layer = $Area2D.collision_layer
+
 
 func _ready():
 	_enemy_groups = GroupRelations.get_enemies(owner)
+
+
+func disable():
+	$Area2D.collision_layer = 0
 	
+
+func enable():
+	$Area2D.collision_layer = _layer
+
 func _on_Area2D_body_entered(body):
 	if (_enemy_detected(body)):
-		print("detected enemy, entering combat")
-		owner.get_node("StateMachine").change_to("Combat")
+		emit_signal("enemy_detected")
 
 
 func _enemy_detected(body: Node):
 	for enemy_group in _enemy_groups:
 		if body.is_in_group(enemy_group):
-			print("detected enemy: " + str(body))
 			return true
 	return false
 

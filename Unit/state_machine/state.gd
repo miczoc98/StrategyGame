@@ -29,6 +29,10 @@ func exit() -> void:
 	pass
 
 func _get_state_machine(node: Node) -> Node:
+	if _state_machine != null:
+		return _state_machine
+	
 	if node != null and not node.is_in_group("state_machine"):
 		return _get_state_machine(node.get_parent())
+	_state_machine = node
 	return node

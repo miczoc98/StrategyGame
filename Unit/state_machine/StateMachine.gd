@@ -7,7 +7,7 @@ var state:State = null
 var history = []
 
 
-func _ready() -> void:
+func start() -> void:
 	state = get_node(starting_state)
 	_enter_state()
 

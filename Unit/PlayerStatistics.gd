@@ -13,7 +13,7 @@ func _init():
 
 func _init_stats():
 	var name_list = _load_name_list()
-	_unit_name = _get_random_name(name_list)
+	unit_name = _get_random_name(name_list)
 	
 	for key in stats.keys():
 		stats[key] = int(clamp(generator.randfn(20, 15), 0, 100))

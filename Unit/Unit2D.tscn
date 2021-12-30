@@ -1,36 +1,28 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://sprites/icon.png" type="Texture" id=1]
 [ext_resource path="res://unit/Unit2D.gd" type="Script" id=2]
-[ext_resource path="res://unit/navigation/navigation.gd" type="Script" id=3]
+[ext_resource path="res://unit/navigation/Navigation.tscn" type="PackedScene" id=3]
 [ext_resource path="res://unit/state_machine/Gathering.gd" type="Script" id=4]
-[ext_resource path="res://unit/Statistics.gd" type="Script" id=5]
-[ext_resource path="res://unit/navigation/PathVisualization.gd" type="Script" id=6]
-[ext_resource path="res://Unit/Sprite.gd" type="Script" id=7]
-[ext_resource path="res://unit/state_machine/Combat.gd" type="Script" id=8]
-[ext_resource path="res://sprites/WhitePixel.png" type="Texture" id=9]
+[ext_resource path="res://unit/Statistics.tscn" type="PackedScene" id=5]
+[ext_resource path="res://unit/state_machine/Navigating.tscn" type="PackedScene" id=6]
+[ext_resource path="res://unit/Sprite.gd" type="Script" id=7]
+[ext_resource path="res://unit/Vision.tscn" type="PackedScene" id=8]
 [ext_resource path="res://unit/state_machine/StateMachine.gd" type="Script" id=10]
 [ext_resource path="res://unit/state_machine/Gather.gd" type="Script" id=11]
 [ext_resource path="res://unit/state_machine/Deposit.gd" type="Script" id=12]
 [ext_resource path="res://unit/state_machine/Idle.gd" type="Script" id=13]
-[ext_resource path="res://unit/state_machine/Navigating.gd" type="Script" id=14]
+[ext_resource path="res://unit/state_machine/Combat.tscn" type="PackedScene" id=14]
 [ext_resource path="res://unit/Job.gd" type="Script" id=15]
+[ext_resource path="res://unit/Exploring.gd" type="Script" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 21.6312
 
-[sub_resource type="CanvasItemMaterial" id=2]
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 25.1793
-
-[sub_resource type="CircleShape2D" id=4]
-radius = 70.1647
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 131.834
-
-[node name="Unit2D" type="KinematicBody2D"]
+[node name="Unit2D" type="KinematicBody2D" groups=[
+"player",
+"unit",
+]]
 z_index = 10
 input_pickable = true
 collision_mask = 14
@@ -43,44 +35,9 @@ script = ExtResource( 7 )
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Statistics" type="Node2D" parent="."]
-script = ExtResource( 5 )
+[node name="Statistics" parent="." instance=ExtResource( 5 )]
 
-[node name="HP" type="TextureProgress" parent="Statistics"]
-material = SubResource( 2 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -60.0
-margin_top = -60.4719
-margin_right = 60.0
-margin_bottom = -40.4719
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 1.0
-step = 0.01
-value = 1.0
-texture_under = ExtResource( 9 )
-texture_progress = ExtResource( 9 )
-tint_under = Color( 0.807843, 0.180392, 0.180392, 1 )
-tint_progress = Color( 0.266667, 0.682353, 0.176471, 1 )
-nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Navigation" type="Node2D" parent="."]
-script = ExtResource( 3 )
-
-[node name="PathVisualization" type="Node2D" parent="Navigation"]
-script = ExtResource( 6 )
-
-[node name="GroundTypeDetector" type="Area2D" parent="Navigation"]
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Navigation/GroundTypeDetector"]
-shape = SubResource( 3 )
+[node name="Navigation" parent="." instance=ExtResource( 3 )]
 
 [node name="Job" type="Node2D" parent="."]
 script = ExtResource( 15 )
@@ -88,6 +45,8 @@ job_change_willingness_time_multiplier = 5
 
 [node name="Timer" type="Timer" parent="Job"]
 autostart = true
+
+[node name="Vision" parent="." instance=ExtResource( 8 )]
 
 [node name="StateMachine" type="Node2D" parent="." groups=[
 "state_machine",
@@ -106,40 +65,22 @@ script = ExtResource( 11 )
 [node name="Deposit" type="Node2D" parent="StateMachine/Gathering"]
 script = ExtResource( 12 )
 
-[node name="Combat" type="Node2D" parent="StateMachine"]
-script = ExtResource( 8 )
+[node name="Combat" parent="StateMachine" instance=ExtResource( 14 )]
 
-[node name="Detector" type="Area2D" parent="StateMachine/Combat"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Combat/Detector"]
-shape = SubResource( 4 )
-
-[node name="Timer" type="Timer" parent="StateMachine/Combat"]
+[node name="Exploring" type="Node2D" parent="StateMachine"]
+script = ExtResource( 16 )
 
 [node name="Idle" type="Node2D" parent="StateMachine"]
 script = ExtResource( 13 )
 
-[node name="Navigating" type="Node2D" parent="StateMachine"]
-script = ExtResource( 14 )
-
-[node name="Vision" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="Vision" groups=[
-"unit_vision",
-]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision/Area2D"]
-shape = SubResource( 5 )
+[node name="Navigating" parent="StateMachine" instance=ExtResource( 6 )]
 
 [connection signal="mouse_entered" from="." to="." method="_on_Unit2D_mouse_entered"]
 [connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Unit2D_mouse_exited"]
 [connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
-[connection signal="died" from="Statistics" to="." method="_on_died"]
-[connection signal="body_entered" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_entered"]
-[connection signal="body_exited" from="Navigation/GroundTypeDetector" to="Navigation" method="_on_GroundTypeDetector_body_exited"]
 [connection signal="job_changed" from="Job" to="." method="_on_job_changed"]
 [connection signal="timeout" from="Job/Timer" to="Job" method="_on_job_change_timer_timeout"]
+[connection signal="enemy_detected" from="Vision" to="." method="_on_vision_enemy_detected"]
 [connection signal="resource_gathered" from="StateMachine/Gathering/Gather" to="StateMachine/Gathering" method="_on_Gather_resource_gathered"]
 [connection signal="timeout" from="StateMachine/Gathering/Gather/Timer" to="StateMachine/Gathering/Gather" method="_on_Timer_timeout"]
-[connection signal="timeout" from="StateMachine/Combat/Timer" to="StateMachine/Combat" method="_on_Timer_timeout"]

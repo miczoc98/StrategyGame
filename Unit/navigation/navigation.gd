@@ -6,11 +6,13 @@ signal target_reached()
 
 var nav: AStarNavigation = null
 
-var _max_speed := 100.0
-var _max_speed_in_mountains = 50.0
+var castle: Castle
+var _max_speed := 40.00
+var _max_speed_in_mountains = 20.0
 
-var behaviour: KinematicBehaviour = null
+var behaviour: KinematicSeek = null
 var path_to_follow: PoolVector2Array = PoolVector2Array()
+
 
 func _ready():
 	behaviour = KinematicSeek.new()
@@ -23,11 +25,13 @@ func get_steering() -> SteeringOutput:
 	else:
 		return SteeringOutput.new()
 
-func set_new_target(target: Vector2) -> void:
+func set_new_target(target: Vector2, tolerancy := 64.0) -> void:
 	path_to_follow = nav.get_path_to_target(self.global_position, target)
 	behaviour.set_target(path_to_follow[0])
+	behaviour.final_node_satisfaction_radius = tolerancy
 	emit_signal("new_path_generated", path_to_follow)
 	
+
 func on_target_reached():
 	if path_to_follow.size() == 1:
 		behaviour.set_target(path_to_follow[0], true)

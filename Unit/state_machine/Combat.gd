@@ -1,34 +1,34 @@
-extends Node2D
+extends State
 
-onready var detector:Area2D = $Detector
+
+onready var damage: Damage = $Damage
 onready var timer:Timer = $Timer
 onready var stats:Statistics = owner.get_node("Statistics")
-
-var enemy_group = ""
-
-func _ready():
-	if get_parent().is_in_group("player_unit"):
-		enemy_group = "enemy_unit"
-	elif get_parent().is_in_group("enemy_unit"):
-		enemy_group = "player_unit"
+onready var vision:Vision = owner.get_node("Vision")
 
 
 func process(delta: float):
-	if not detector.get_overlapping_bodies().empty():
+	var enemies_in_range = damage.get_enemies_in_range()
+	if not enemies_in_range.empty():
+		owner.emit_signal("enemy_detected" , Nodes.get_closest_node(enemies_in_range, global_position).global_position)
 		if (timer.is_stopped()):
 			timer.start()
 	else:
 		timer.stop()
+		var enemies = damage.get_enemies_in_range()
+		if enemies.empty():
+			_state_machine.back()
+		else:
+			var closest_enemy = Nodes.get_closest_node(enemies, global_position)
+			_state_machine.change_to("Navigating", {"target": closest_enemy.global_position, "tolerancy": 100, "timeout": 1})
 
-func _deal_damage():
-	var bodies_in_range = detector.get_overlapping_bodies()
-	var enemies = Nodes.filter_by_group(bodies_in_range, enemy_group)
-	
-	if not enemies.empty():
-		Nodes.get_closest_node(enemies, global_position).take_damage(_calculate_damage())
 
 func _calculate_damage():
 	return 10 * stats.stats["fighting"] * 0.1
 
+
 func _on_Timer_timeout():
-	_deal_damage()
+	damage.deal_damage(_calculate_damage())
+
+
+

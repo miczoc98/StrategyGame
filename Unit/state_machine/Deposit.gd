@@ -8,7 +8,7 @@ func process(delta: float):
 	if _is_base_in_range():
 		for resource in _parent._gathered_resources.keys():
 			if (_parent._gathered_resources[resource] > 0):
-				emit_signal("resource_deposited", resource, _parent._gathered_resources[resource])
+				GlobalMediator.action("resource_deposited", [resource, _parent._gathered_resources[resource]])
 				_parent._gathered_resources[resource] = 0
 				_state_machine.change_to("Gathering/Gather")
 	else:

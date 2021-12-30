@@ -5,16 +5,18 @@ var WALKABLE_CELLS_ID = 0
 
 var Astar = AStar2D.new()
 
+onready var fog_map: Fog = $Fog
 onready var ground_map: TileMap = $Ground
 onready var tree_map: TileMap = $Trees
 onready var mountain_map: TileMap = $Mountains
+onready var building_grid: BuildingGrid = $Buildings
 onready var collision_probe: CollisionProbe = $CollisionProbe
 
 var point_ids_by_position_in_tilemap := Dictionary()
 var last_id := 0
 
 func _ready():
-	collision_probe.set_collision_mask(MaskCalculator.sum([2, 4]))
+	collision_probe.set_collision_mask(MaskCalculator.sum([2, 3, 4]))
 	
 	var tiles = ground_map.get_used_cells_by_id(WALKABLE_CELLS_ID)
 
@@ -98,4 +100,4 @@ func _on_tree_destroyed(position):
 
 func _on_BuildingGrid_object_placed(collision_cells):
 	for cell in collision_cells:
-		Astar.remove_point(point_ids_by_position_in_tilemap[cell])
+		Astar.set_point_disabled(point_ids_by_position_in_tilemap[cell])

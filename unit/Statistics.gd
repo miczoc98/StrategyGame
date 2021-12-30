@@ -6,7 +6,7 @@ signal died()
 var _max_health := 100.0
 var _health := 100.0
 
-var _unit_name: String = ""
+var unit_name: String = ""
 
 func take_damage(amount: int):
 	$HP.value = _health/_max_health

@@ -3,12 +3,16 @@ class_name Unit2D
 
 signal unit_mouse_entered(unit)
 signal unit_mouse_exited(unit)
+
 signal unit_died(unit)
 signal job_changed(unit, job)
+signal enemy_detected(pos)
 
 onready var navigation: UnitNavigation = $Navigation
 onready var stats: Statistics = $Statistics
 onready var job: UnitJob = $Job
+
+var owner_castle: Castle
 
 func _ready():
 	navigation.nav = $"/root/Environment/Navigation"
@@ -27,10 +31,14 @@ func set_requested_jobs(jobs: Dictionary):
 func get_job():
 	return job._current_job;
 
+
 func _propagate_groups():
 	for child in get_children():
 		for group in get_groups():
 			child.add_to_group(group)
+
+func _on_vision_enemy_detected():
+	owner.get_node("StateMachine").change_to("Combat")
 
 func _on_job_changed(job):
 	print(stats.unit_name + " changed job to " + job.name)
