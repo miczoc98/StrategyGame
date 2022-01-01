@@ -11,7 +11,7 @@ var _timeout := 10
 func _init():
 	rand.randomize()
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	_central_point = _get_owner_unit().owner_castle.position
 	var _direction = rand.randf_range(0, 360)
 	

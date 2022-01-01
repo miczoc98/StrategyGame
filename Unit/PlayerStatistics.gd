@@ -23,7 +23,7 @@ func _load_name_list():
 	var name_list = []
 	
 	var file = File.new()
-	file.open("res://names.csv", File.READ)
+	file.open("res://names.txt", File.READ)
 	
 	while !file.eof_reached():
 		name_list.append(file.get_line())

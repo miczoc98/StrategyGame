@@ -10,6 +10,7 @@ script = ExtResource( 2 )
 margin_right = 308.0
 margin_bottom = 200.0
 size_flags_vertical = 3
+theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,15 +25,15 @@ __meta__ = {
 }
 
 [node name="UnitCount" type="Label" parent="Panel/VBoxContainer"]
-margin_top = 82.0
+margin_top = 83.0
 margin_right = 308.0
-margin_bottom = 94.0
+margin_bottom = 95.0
 size_flags_vertical = 6
 theme = ExtResource( 1 )
 text = "No castle selected"
 
 [node name="RecruitButton" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 180.0
+margin_top = 182.0
 margin_right = 308.0
 margin_bottom = 200.0
 text = "Recruit"

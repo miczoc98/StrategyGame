@@ -9,12 +9,13 @@
 script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 200.0
-margin_top = -100.0
-margin_right = -615.0
+margin_left = -180.0
+margin_top = -150.0
+margin_right = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,22 +23,23 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Icon2" parent="Panel/HBoxContainer" instance=ExtResource( 1 )]
-margin_right = 67.0
-margin_bottom = 100.0
+margin_right = 117.0
+margin_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 64, 64 )
 size_flags_horizontal = 3
 
 [node name="Icon3" parent="Panel/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 71.0
-margin_right = 138.0
-margin_bottom = 100.0
+margin_left = 121.0
+margin_right = 238.0
+margin_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 64, 64 )
@@ -45,9 +47,9 @@ size_flags_horizontal = 3
 building_scene = ExtResource( 3 )
 
 [node name="Icon4" parent="Panel/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 142.0
-margin_right = 209.0
-margin_bottom = 100.0
+margin_left = 242.0
+margin_right = 360.0
+margin_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 64, 64 )

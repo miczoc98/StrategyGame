@@ -16,6 +16,7 @@ radius = 26.4153
 [node name="NeutralUnit" type="KinematicBody2D" groups=[
 "neutral",
 ]]
+collision_mask = 12
 script = ExtResource( 7 )
 
 [node name="Statistics" parent="." instance=ExtResource( 1 )]
@@ -48,3 +49,4 @@ script = ExtResource( 6 )
 [node name="Combat" parent="StateMachine" instance=ExtResource( 9 )]
 
 [connection signal="died" from="Statistics" to="." method="_on_died"]
+[connection signal="enemy_detected" from="Vision" to="." method="_on_vision_enemy_detected"]

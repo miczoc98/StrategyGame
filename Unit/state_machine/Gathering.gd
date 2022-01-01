@@ -1,8 +1,6 @@
 class_name Gathering
 extends State
 
-signal resource_deposited(resource, amount)
-
 onready var _navigation = $"/root/Environment/Navigation"
 
 var _max_resources = 50

@@ -21,7 +21,7 @@ func enter(msg := {}):
 		navigation.set_new_target(target)
 
 	
-func process(delta: float):
+func process(_delta: float):
 	owner.move_and_slide(navigation.get_steering().linearVelocity)
 
 

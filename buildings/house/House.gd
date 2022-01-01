@@ -2,7 +2,7 @@ extends Building
 
 func _ready():
 	add_to_group("House")
-	health = 5
+	set_max_health(100)
 	cost = {"wood": 50, "stone": 10}
 
 func on_placed():

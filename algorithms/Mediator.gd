@@ -10,7 +10,7 @@ func subscribe(action: String, call: FuncRef):
 		actions[action] = [call]
 
 
-func action(action: String, args: Array):
+func action(action: String, args := []):
 	if not action in actions:
 		return
 	

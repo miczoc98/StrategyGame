@@ -1,22 +1,28 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://default.tres" type="Theme" id=1]
+[ext_resource path="res://player/GUI/log/Log.gd" type="Script" id=2]
 
 [node name="Log" type="CanvasLayer"]
+script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -160.0
-margin_right = 160.0
+margin_top = -192.0
+margin_right = 520.0
+theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+[node name="LogContent" type="Label" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -1.49829
+margin_right = 134.502
 theme = ExtResource( 1 )
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

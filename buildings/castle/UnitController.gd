@@ -13,6 +13,8 @@ var _requested_assignments :={}
 func _ready():
 	$UnitSpawner.connect("unit_spawned", self, "_on_unit_spawned")
 		
+	GlobalMediator.subscribe("enemy_detected", funcref(self, "_on_enemy_detected"))
+	
 	_get_units()
 	for unit in _units:
 		_subscribe_to_unit_events(unit)
@@ -38,7 +40,6 @@ func spawn_unit():
 func _subscribe_to_unit_events(unit):
 	unit.connect("job_changed", self, "_on_unit_job_changed")
 	unit.connect("unit_died", self, "_on_unit_died")
-	unit.connect("enemy_detected", self, "_on_enemy_detected")
 
 func set_assignments(requested_assignments: Dictionary):
 	_requested_assignments = requested_assignments
@@ -82,9 +83,22 @@ func _on_unit_spawned(unit):
 	_get_units()
 
 
-func _on_unit_died():
-	_get_units()
+func _on_unit_died(unit):
+	_units.erase(unit)
+	emit_signal("number_of_units_changed", _units.size())
 
-func _on_enemy_detected():
-	#TODO
-	pass	
+func _on_enemy_detected(enemy_group: String, pos: Vector2):
+	if enemy_group in GroupRelations.get_enemies(self):
+		var exploring_units = _get_units_by_job("exploration")
+		for unit in exploring_units:
+			unit.order_move(pos)
+
+
+func _get_units_by_job(job: String):
+	var units_with_job = []
+	
+	for unit in _units:
+		if unit.get_job() == job:
+			units_with_job.append(unit)
+	
+	return units_with_job

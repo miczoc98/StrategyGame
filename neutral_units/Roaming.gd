@@ -7,7 +7,7 @@ var _central_point: Vector2
 var _timeout := 5
 
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	var _direction = rand.randf_range(0, 360)
 	var _distance = rand.randf_range(0, _exploration_radius)
 	

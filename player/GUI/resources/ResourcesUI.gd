@@ -16,5 +16,5 @@ func _ready():
 func _on_resource_changed(type: String, amount: int):
 	labels[type].text = type + ": " + str(amount)
 
-func _on_unit_count_changed(units: int, max_units: int):
-	self.units.text = "Available units: " + str(units) + "/" + str(max_units)
+func _on_unit_count_changed(unit_count: int, max_units: int):
+	self.units.text = "Available units: " + str(unit_count) + "/" + str(max_units)

@@ -1,15 +1,13 @@
 extends Building
 
+
 func _ready():
-	add_to_group("Tower")
-	health = 10
+	set_max_health(200)
 	cost = {"stone": 50, "wood": 10}
-
-	$Damage.set_enemy_groups(GroupRelations.get_enemies(self))
-
 
 func on_placed():
 	$Timer.start()
+	$Damage.set_enemy_groups(GroupRelations.get_enemies(self))
 
 
 func get_collision_rectangle() -> Array:

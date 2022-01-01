@@ -1,6 +1,6 @@
 extends State
 
-func process(delta: float):
+func process(_delta: float):
 	if (Input.is_key_pressed(KEY_1)):
 		_state_machine.change_to("Gathering", {"resource": Resources.get_resource("wood")})
 		print("gathering wood")

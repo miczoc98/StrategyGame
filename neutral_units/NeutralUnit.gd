@@ -8,8 +8,15 @@ func _ready():
 	
 	$StateMachine.start()
 
+func order_move(target: Vector2):
+	$StateMachine.change_to("Navigating", {"target": target})
+
 func take_damage(amount: int):
 	stats.take_damage(amount)
 
 func _on_died():
 	queue_free()
+
+
+func _on_vision_enemy_detected():
+	$StateMachine.change_to("Combat")

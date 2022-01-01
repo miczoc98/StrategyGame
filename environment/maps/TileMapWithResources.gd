@@ -24,7 +24,7 @@ func get_closest_tile(position: Vector2) -> Dictionary:
 		
 	return {"position": min_distance_tile, "distance": min_distance, "world_position": world_position}
 	
-func gather(tile_position: Vector2) -> void:
+func gather(_tile_position: Vector2) -> void:
 	print_debug("Using abstract method")
 
 func _get_tile_center(tile: Vector2):

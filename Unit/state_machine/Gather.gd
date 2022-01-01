@@ -18,7 +18,7 @@ func enter(msg: Dictionary = {}) -> void:
 func exit() -> void:
 	_timer.stop()
 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	if _is_resource_in_range():
 		_start_timer(1)
 	else:

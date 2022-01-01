@@ -79,6 +79,7 @@ script = ExtResource( 13 )
 [connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Unit2D_mouse_exited"]
 [connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
+[connection signal="died" from="Statistics" to="." method="_on_died"]
 [connection signal="job_changed" from="Job" to="." method="_on_job_changed"]
 [connection signal="timeout" from="Job/Timer" to="Job" method="_on_job_change_timer_timeout"]
 [connection signal="enemy_detected" from="Vision" to="." method="_on_vision_enemy_detected"]

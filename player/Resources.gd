@@ -49,7 +49,7 @@ func _on_unit_spawned(unit):
 	mediator.action("unit_count_changed", [active_units, unit_limit])
 
 
-func _on_unit_died(unit):
+func _on_unit_died():
 	active_units -= 1
 	mediator.action("unit_count_changed", [active_units, unit_limit])
 

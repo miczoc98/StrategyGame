@@ -1,7 +1,5 @@
 extends PlayerController
 
-signal unit_selected(unit)
-
 var unit_under_cursor: Unit2D
 var active_unit: Unit2D
 
@@ -16,7 +14,7 @@ func _ready():
 	GlobalMediator.subscribe("unit_spawned", funcref(self, "_on_unit_spawned"))
 	
 
-func _process(delta):
+func _process(_delta):
 	if (Input.is_action_just_pressed("primary_action")):
 		_select_active_unit(unit_under_cursor)
 

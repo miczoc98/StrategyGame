@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://environment/maps/tileset/basic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/maps/fog/Fog.gd" type="Script" id=2]
@@ -16,15 +16,21 @@
 [ext_resource path="res://environment/maps/Mountains.gd" type="Script" id=14]
 [ext_resource path="res://environment/maps/Food.gd" type="Script" id=15]
 [ext_resource path="res://player/GUI/unit_assignment/UnitAssignment.tscn" type="PackedScene" id=16]
-[ext_resource path="res://neutral_units/NeutralUnit.tscn" type="PackedScene" id=17]
+[ext_resource path="res://player/GUI/log/Log.tscn" type="PackedScene" id=17]
 [ext_resource path="res://buildings/castle/Castle.tscn" type="PackedScene" id=18]
 [ext_resource path="res://environment/maps/ground/Ground.gd" type="Script" id=19]
 [ext_resource path="res://algorithms/Mediator.gd" type="Script" id=20]
 [ext_resource path="res://player/controllers/BuildingSelector.gd" type="Script" id=21]
 [ext_resource path="res://player/Player.gd" type="Script" id=22]
 [ext_resource path="res://environment/GUI.gd" type="Script" id=23]
+[ext_resource path="res://Cheats.gd" type="Script" id=25]
+[ext_resource path="res://player/GUI/objective/Objective.tscn" type="PackedScene" id=27]
+[ext_resource path="res://buildings/evil_orb/EvilOrb.tscn" type="PackedScene" id=28]
 
 [node name="Environment" type="Node2D"]
+
+[node name="Cheats" type="Node2D" parent="."]
+script = ExtResource( 25 )
 
 [node name="Player" type="Node2D" parent="." groups=[
 "player_controller",
@@ -50,6 +56,10 @@ script = ExtResource( 23 )
 [node name="BuildingMode" parent="Player/GUI" instance=ExtResource( 11 )]
 
 [node name="UnitAssignment" parent="Player/GUI" instance=ExtResource( 16 )]
+
+[node name="Objective" parent="Player/GUI" instance=ExtResource( 27 )]
+
+[node name="Log" parent="Player/GUI" instance=ExtResource( 17 )]
 
 [node name="Controllers" type="Node2D" parent="Player"]
 
@@ -124,8 +134,11 @@ position = Vector2( 861.769, 1935.22 )
 current = true
 script = ExtResource( 6 )
 
-[node name="NeutralUnit" parent="." instance=ExtResource( 17 )]
-position = Vector2( 1046.29, 1599.93 )
+[node name="EvilOrb2" parent="." instance=ExtResource( 28 )]
+position = Vector2( 1455.58, 2062.81 )
+
+[node name="EvilOrb" parent="." instance=ExtResource( 28 )]
+position = Vector2( 449.513, 2063.57 )
 
 [connection signal="tree_destroyed" from="Navigation/Trees" to="Navigation" method="_on_tree_destroyed"]
 [connection signal="stone_gathered" from="Navigation/Mountains" to="Player/Resources" method="_on_stone_gathered"]

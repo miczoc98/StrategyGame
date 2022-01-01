@@ -3,7 +3,7 @@ class_name Castle
 
 func _ready():
 	add_to_group("Castle")
-	health = 15
+	set_max_health(500)
 	cost = {"wood": 50, "stone": 100}
 	
 	$Vision.disable()
@@ -26,7 +26,7 @@ func get_collision_rectangle() -> Array:
 	var collider: CollisionShape2D = $Collider
 	return [collider.position, collider.shape.extents]
 	
-func _on_input_event(viewport: Object, event: InputEvent, shape_idx: int):
+func _on_input_event(_viewport: Object, event: InputEvent, _shape_idx: int):
 	if event.is_action("primary_action"):
 		GlobalMediator.action("building_selected", [self])
 	

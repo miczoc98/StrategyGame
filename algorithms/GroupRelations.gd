@@ -15,7 +15,9 @@ static func get_relation_groups():
 
 static func get_enemies(node: Node) -> Array:
 	var group = _get_affinity_group(node)
-	return get_relations()[group]["enemy"]
+	if group != null: 
+		return get_relations()[group]["enemy"]
+	return []
 
 static func _get_affinity_group(node: Node):
 	var node_groups = node.get_groups()

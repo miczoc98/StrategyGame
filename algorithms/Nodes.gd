@@ -12,6 +12,21 @@ static func filter_by_group(nodes: Array, group: String) -> Array:
 	
 	return nodes_in_group
 
+static func filter_by_groups(nodes: Array, groups: Array) -> Array:
+	var nodes_in_groups = nodes
+	for group in groups:
+		nodes_in_groups = filter_by_group(nodes_in_groups, group)
+	return nodes_in_groups
+
+
+static func filter_by_any_group(nodes: Array, groups: Array) -> Array:
+	var nodes_in_groups = []
+	for node in nodes:
+		for group in groups:
+			if node.is_in_group(group):
+				nodes_in_groups.append(node)
+	
+	return nodes_in_groups
 
 static func get_closest_node(nodes: Array, position: Vector2) -> Node2D:
 	var min_distance = INF
