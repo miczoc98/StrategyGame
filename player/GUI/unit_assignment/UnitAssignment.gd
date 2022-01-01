@@ -74,7 +74,11 @@ func _on_UnitController_number_of_units_changed(units):
 
 
 func _on_castle_selected(castle: Castle):
+	if _unit_controller == castle.get_unit_controller():
+		return
+	
 	_unit_controller = castle.get_unit_controller()
+	
 	var assignments = _unit_controller.get_requested_assignment()
 	var unit_count = _unit_controller.get_unit_count()
 

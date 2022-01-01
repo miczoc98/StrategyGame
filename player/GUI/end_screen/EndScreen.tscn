@@ -43,7 +43,7 @@ margin_right = 48.0
 margin_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Return to main menu"
+text = "Return to title screen"
 __meta__ = {
 "_edit_use_anchors_": false
 }

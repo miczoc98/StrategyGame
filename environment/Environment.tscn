@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://environment/maps/tileset/basic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/maps/fog/Fog.gd" type="Script" id=2]
@@ -23,11 +23,13 @@
 [ext_resource path="res://player/controllers/BuildingSelector.gd" type="Script" id=21]
 [ext_resource path="res://player/Player.gd" type="Script" id=22]
 [ext_resource path="res://environment/GUI.gd" type="Script" id=23]
+[ext_resource path="res://environment/Environment.gd" type="Script" id=24]
 [ext_resource path="res://Cheats.gd" type="Script" id=25]
 [ext_resource path="res://player/GUI/objective/Objective.tscn" type="PackedScene" id=27]
 [ext_resource path="res://buildings/evil_orb/EvilOrb.tscn" type="PackedScene" id=28]
 
 [node name="Environment" type="Node2D"]
+script = ExtResource( 24 )
 
 [node name="Cheats" type="Node2D" parent="."]
 script = ExtResource( 25 )
