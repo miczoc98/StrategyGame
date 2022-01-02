@@ -26,7 +26,7 @@ radius = 21.6312
 use_parent_material = true
 z_index = 10
 input_pickable = true
-collision_mask = 14
+collision_mask = 6
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -53,7 +53,6 @@ autostart = true
 [node name="Vision" parent="." groups=[
 "player",
 ] instance=ExtResource( 14 )]
-visible = true
 
 [node name="StateMachine" type="Node2D" parent="." groups=[
 "state_machine",
@@ -87,6 +86,7 @@ script = ExtResource( 7 )
 [connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
 [connection signal="died" from="Attributes" to="." method="_on_died"]
+[connection signal="job_changed" from="Job" to="." method="_on_job_changed"]
 [connection signal="timeout" from="Job/Timer" to="Job" method="_on_job_change_timer_timeout"]
 [connection signal="enemy_detected" from="Vision" to="." method="_on_vision_enemy_detected"]
 [connection signal="timeout" from="StateMachine/Gathering/Gather/Timer" to="StateMachine/Gathering/Gather" method="_on_Timer_timeout"]

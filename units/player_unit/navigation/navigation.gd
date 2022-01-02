@@ -24,7 +24,7 @@ func get_steering() -> SteeringOutput:
 	else:
 		return SteeringOutput.new()
 
-func set_new_target(target: Vector2, tolerancy := 64.0) -> void:
+func set_new_target(target: Vector2, tolerancy := 32.0) -> void:
 	path_to_follow = map.get_path_to_target(self.global_position, target)
 	behaviour.set_target(path_to_follow[0])
 	behaviour.final_node_satisfaction_radius = tolerancy

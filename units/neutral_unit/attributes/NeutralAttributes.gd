@@ -2,5 +2,5 @@ extends Attributes
 
 
 func _init():
-	stats = {"fighting": 10}
+	stats = {"fighting": 30}
 	

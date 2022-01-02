@@ -23,7 +23,7 @@ func process(_delta: float):
 			_state_machine.back()
 		else:
 			var closest_enemy = Nodes.get_closest_node(enemies, global_position)
-			_state_machine.change_to("Navigating", {"target": closest_enemy.global_position, "tolerancy": 100, "timeout": 1})
+			_state_machine.change_to("Navigating", {"target": closest_enemy.global_position, "tolerance": 48, "timeout": 1})
 
 
 func _get_visible_enemies():

@@ -71,6 +71,8 @@ func _on_unit_controller_changed(unit_count: int, assignments: Dictionary):
 	for job in _sliders_by_job.keys():
 		_sliders_by_job[job].max_value = unit_count
 		_sliders_by_job[job].value = assignments[job]
+		
+	_on_number_of_units_changed(unit_count)
 
 
 func _on_number_of_units_changed(units):

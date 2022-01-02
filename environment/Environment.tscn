@@ -1,11 +1,11 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://environment/maps/tileset/basic_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/maps/fog/Fog.gd" type="Script" id=2]
 [ext_resource path="res://environment/maps/navigation/CollisionProbe.gd" type="Script" id=3]
 [ext_resource path="res://environment/maps/Map.gd" type="Script" id=4]
 [ext_resource path="res://player/GUI/unit_details/UnitDetails.tscn" type="PackedScene" id=5]
-[ext_resource path="res://environment/Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
 [ext_resource path="res://player/controllers/UnitSelector.gd" type="Script" id=7]
 [ext_resource path="res://environment/maps/Trees.gd" type="Script" id=8]
 [ext_resource path="res://player/Resources.gd" type="Script" id=9]
@@ -32,7 +32,6 @@
 [ext_resource path="res://player/controllers/UnitAssignment.gd" type="Script" id=30]
 [ext_resource path="res://neutral/Neutral.gd" type="Script" id=31]
 [ext_resource path="res://environment/maps/navigation/AStarNavigation.gd" type="Script" id=32]
-[ext_resource path="res://units/neutral_unit/NeutralUnit.tscn" type="PackedScene" id=33]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -156,9 +155,6 @@ script = ExtResource( 15 )
 ] instance=ExtResource( 18 )]
 material = SubResource( 1 )
 position = Vector2( 168.542, 621.285 )
-
-[node name="NeutralUnit" parent="Map/Buildings/Castle" instance=ExtResource( 33 )]
-position = Vector2( -281.447, 25.3514 )
 
 [node name="EvilOrb2" parent="Map/Buildings" instance=ExtResource( 28 )]
 position = Vector2( 2570.32, 180.937 )

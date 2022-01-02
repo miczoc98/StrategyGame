@@ -14,11 +14,11 @@ var _requested_assignments :={}
 
 func init():
 	_spawner.map = map
+	_spawner.init()
 	
 	_get_units()
 	for unit in _units:
 		_subscribe_to_unit_events(unit)
-		unit.owner_castle = get_parent()
 
 	for job in Jobs.get_jobs():
 		_requested_assignments[job.name] = 0
@@ -47,7 +47,6 @@ func spawn_unit():
 	
 	_subscribe_to_unit_events(unit)
 	_get_units()
-	GlobalMediator.action("unit_spawned", [unit])
 
 
 func _subscribe_to_unit_events(unit):

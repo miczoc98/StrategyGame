@@ -22,7 +22,7 @@ func process(_delta: float) -> void:
 	else:
 		var closest_resource_tile = _resource_map.get_closest_tile(global_position).world_position
 		_timer.stop()
-		_state_machine.change_to("Navigating", {"target": closest_resource_tile})
+		_state_machine.change_to("Navigating", {"target": closest_resource_tile, "tolerancy": 64})
 
 
 func exit() -> void:
