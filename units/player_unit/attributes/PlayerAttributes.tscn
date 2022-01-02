@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://units/attributes/Attributes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://units/player_unit/attributes/PlayerAttributes.gd" type="Script" id=2]
+
+[node name="Attributes" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="RegenTimer" type="Timer" parent="." index="1"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

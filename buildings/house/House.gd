@@ -5,7 +5,7 @@ func _ready():
 	set_max_health(100)
 	cost = {"wood": 50, "stone": 10}
 
-func on_placed():
+func init():
 	GlobalMediator.action("house_placed", [])
 
 func get_collision_rectangle() -> Array:

@@ -3,7 +3,7 @@ extends PlayerGUI
 export var max_lines = 10
 var text : String = ""
 
-func _ready():
+func init():
 	GlobalMediator.subscribe("unit_job_changed", funcref(self, "_on_unit_job_changed"))
 
 func _on_unit_job_changed(unit, new_job):

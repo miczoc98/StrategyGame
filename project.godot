@@ -12,12 +12,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "AStarNavigation",
 "language": "GDScript",
-"path": "res://environment/navigation/AStarNavigation.gd"
+"path": "res://environment/maps/navigation/AStarNavigation.gd"
 }, {
 "base": "Reference",
 "class": "Arrays",
 "language": "GDScript",
 "path": "res://algorithms/Arrays.gd"
+}, {
+"base": "Node2D",
+"class": "Attributes",
+"language": "GDScript",
+"path": "res://units/attributes/Attributes.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Building",
@@ -29,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://environment/maps/buildings/BuildingGrid.gd"
 }, {
+"base": "PlayerController",
+"class": "BuildingPlacement",
+"language": "GDScript",
+"path": "res://player/controllers/BuildingPlacement.gd"
+}, {
 "base": "Building",
 "class": "Castle",
 "language": "GDScript",
@@ -37,12 +47,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "CollisionProbe",
 "language": "GDScript",
-"path": "res://environment/navigation/CollisionProbe.gd"
+"path": "res://environment/maps/navigation/CollisionProbe.gd"
 }, {
 "base": "Node2D",
 "class": "Damage",
 "language": "GDScript",
-"path": "res://unit/state_machine/Damage.gd"
+"path": "res://units/state_machine/state/combat/Damage.gd"
 }, {
 "base": "Job",
 "class": "ExplorationJob",
@@ -59,10 +69,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://data_types/resources/Gatherable.gd"
 }, {
-"base": "State",
+"base": "Reference",
 "class": "Gathering",
 "language": "GDScript",
-"path": "res://unit/state_machine/Gathering.gd"
+"path": "res://units/state_machine/state/gathering/Gathering.gd"
 }, {
 "base": "Job",
 "class": "GatheringJob",
@@ -103,6 +113,16 @@ _global_script_classes=[ {
 "class": "KinematicSeek",
 "language": "GDScript",
 "path": "res://movement/KinematicSeek.gd"
+}, {
+"base": "Building",
+"class": "Lair",
+"language": "GDScript",
+"path": "res://buildings/lair/Lair.gd"
+}, {
+"base": "Node2D",
+"class": "Map",
+"language": "GDScript",
+"path": "res://environment/maps/Map.gd"
 }, {
 "base": "Reference",
 "class": "MaskCalculator",
@@ -147,17 +167,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "State",
 "language": "GDScript",
-"path": "res://unit/state_machine/state.gd"
+"path": "res://units/state_machine/state/State.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://unit/state_machine/StateMachine.gd"
-}, {
-"base": "Node2D",
-"class": "Statistics",
-"language": "GDScript",
-"path": "res://unit/Statistics.gd"
+"path": "res://units/state_machine/StateMachine.gd"
 }, {
 "base": "Reference",
 "class": "SteeringOutput",
@@ -172,33 +187,35 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Unit2D",
 "language": "GDScript",
-"path": "res://unit/Unit2D.gd"
+"path": "res://units/player_unit/Unit2D.gd"
 }, {
 "base": "Node2D",
 "class": "UnitController",
 "language": "GDScript",
-"path": "res://buildings/castle/UnitController.gd"
+"path": "res://buildings/castle/unit_controller/UnitController.gd"
 }, {
 "base": "Node2D",
 "class": "UnitJob",
 "language": "GDScript",
-"path": "res://unit/Job.gd"
+"path": "res://units/player_unit/Job.gd"
 }, {
 "base": "Node2D",
 "class": "UnitNavigation",
 "language": "GDScript",
-"path": "res://unit/navigation/navigation.gd"
+"path": "res://units/player_unit/navigation/navigation.gd"
 }, {
 "base": "Node2D",
 "class": "Vision",
 "language": "GDScript",
-"path": "res://unit/Vision.gd"
+"path": "res://units/vision/Vision.gd"
 } ]
 _global_script_class_icons={
 "AStarNavigation": "",
 "Arrays": "",
+"Attributes": "",
 "Building": "",
 "BuildingGrid": "",
+"BuildingPlacement": "",
 "Castle": "",
 "CollisionProbe": "",
 "Damage": "",
@@ -214,6 +231,8 @@ _global_script_class_icons={
 "KinematicBehaviour": "",
 "KinematicFlee": "",
 "KinematicSeek": "",
+"Lair": "",
+"Map": "",
 "MaskCalculator": "",
 "Mediator": "",
 "Nodes": "",
@@ -224,7 +243,6 @@ _global_script_class_icons={
 "Resources": "",
 "State": "",
 "StateMachine": "",
-"Statistics": "",
 "SteeringOutput": "",
 "TileMapWithResources": "",
 "Unit2D": "",
@@ -252,7 +270,7 @@ icon=false
 
 [gui]
 
-theme/custom="res://default.tres"
+theme/custom="res://default_theme.tres"
 
 [importer_defaults]
 
@@ -308,7 +326,3 @@ f={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

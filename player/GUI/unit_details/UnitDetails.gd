@@ -2,17 +2,15 @@ extends PlayerGUI
 
 onready var stat_panel: GridContainer = $Background/Panel
 
-func _ready():
-	yield(get_tree().get_nodes_in_group("player_controller")[0], "ready")
-	
+func init():
 	mediator.subscribe("unit_selected", funcref(self, "_on_unit_selected"))
 
 func _display_labels(unit: Unit2D):
-	stat_panel.add_child(_create_label(unit.stats.unit_name, Label.ALIGN_CENTER))
+	stat_panel.add_child(_create_label(unit.attributes.unit_name, Label.ALIGN_CENTER))
 	stat_panel.add_child(_create_label("", Label.ALIGN_CENTER))
 	
-	for stat_name in unit.stats.stats.keys():
-		var label = _create_label(stat_name + ": " + str(unit.stats.stats[stat_name]), Label.ALIGN_LEFT)
+	for stat_name in unit.attributes.stats.keys():
+		var label = _create_label(stat_name + ": " + str(unit.attributes.stats[stat_name]), Label.ALIGN_LEFT)
 		stat_panel.add_child(label)
 
 

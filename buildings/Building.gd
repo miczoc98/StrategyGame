@@ -2,8 +2,6 @@ class_name Building
 extends KinematicBody2D
 
 signal destroyed(object)
-signal building_selected(building)
-
 
 var health := 10.0 
 var current_health := health
@@ -13,8 +11,8 @@ onready var original_color = modulate
 var cost := {"wood": 50, "stone": 50}
 
 func _init():
-	collision_layer = 4
-	collision_mask = MaskCalculator.sum([1, 2, 3, 4, 5, 6])
+	collision_layer = MaskCalculator.sum([4])
+	collision_mask = MaskCalculator.sum([2, 3, 4, 5, 6])
 
 
 func set_max_health(max_health: float):
@@ -39,7 +37,7 @@ func modulate_normal():
 
 # called when building is placed
 # should be overrided
-func on_placed():
+func init():
 	print_debug("using abstract function")
 	pass
 
@@ -48,4 +46,4 @@ func on_placed():
 # should be overrided
 func get_collision_rectangle() -> Array:
 	print_debug("using abstract function")
-	return []
+	return [Vector2.ZERO, Vector2.ZERO]

@@ -1,6 +1,6 @@
 extends TileMapWithResources
 
-signal tree_destroyed(position)
+signal tree_destroyed()
 
 var tree_hps = Dictionary()
 

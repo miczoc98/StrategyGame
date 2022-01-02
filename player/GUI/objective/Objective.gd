@@ -1,8 +1,7 @@
 extends PlayerGUI
 
 
-func _ready():
-	yield(get_tree().get_nodes_in_group("player_controller")[0], "ready")
+func init():
 	GlobalMediator.subscribe("orb_status_changed", funcref(self, "_on_orb_status_changed"))
 
 

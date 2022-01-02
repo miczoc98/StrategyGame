@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://default.tres" type="Theme" id=1]
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://player/GUI/unit_assignment/UnitAssignment.gd" type="Script" id=2]
 
 [node name="UnitAssignment" type="CanvasLayer"]
@@ -37,5 +37,3 @@ margin_top = 182.0
 margin_right = 308.0
 margin_bottom = 200.0
 text = "Recruit"
-
-[connection signal="button_down" from="Panel/VBoxContainer/RecruitButton" to="." method="_on_RecruitButton_button_down"]

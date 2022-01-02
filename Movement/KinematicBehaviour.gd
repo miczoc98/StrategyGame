@@ -1,6 +1,6 @@
 class_name KinematicBehaviour
 
-signal target_reached
+signal target_reached()
 
 var _max_speed: float
 var _target: Vector2

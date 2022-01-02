@@ -1,7 +1,5 @@
 extends TileMapWithResources
 
-signal food_gathered()
-
 var BUSH_WITH_BERRIES_TILE_ID = 6
 var BUSH_WITHOUT_BERRIES_TILE_ID = 7
 
@@ -21,7 +19,6 @@ func gather(tile: Vector2) -> void:
 		get_tree().create_timer(10).connect("timeout", self, "_renew_tile")
 		tiles_to_renew_stack.push_front(tile)
 		tiles.erase(tile)
-	emit_signal("food_gathered")
 	
 func _renew_tile():
 	var tile = tiles_to_renew_stack.pop_front()

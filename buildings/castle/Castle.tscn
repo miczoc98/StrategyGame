@@ -1,15 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://buildings/castle/Castle.gd" type="Script" id=1]
-[ext_resource path="res://sprites/castle.png" type="Texture" id=2]
-[ext_resource path="res://buildings/castle/UnitController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://unit/Vision.tscn" type="PackedScene" id=4]
-[ext_resource path="res://unit/HP.tscn" type="PackedScene" id=5]
+[ext_resource path="res://buildings/castle/castle.png" type="Texture" id=2]
+[ext_resource path="res://buildings/castle/unit_controller/UnitController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://units/vision/Vision.tscn" type="PackedScene" id=4]
+[ext_resource path="res://units/HP.tscn" type="PackedScene" id=5]
+[ext_resource path="res://buildings/castle/Castle.shader" type="Shader" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/is_active = false
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 91.9325, 28.9186 )
 
 [node name="Castle" type="KinematicBody2D"]
+material = SubResource( 1 )
 input_pickable = true
 collision_layer = 8
 collision_mask = 62
@@ -22,19 +29,21 @@ margin_right = 91.7839
 margin_bottom = -85.499
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 position = Vector2( -0.471939, 0 )
 texture = ExtResource( 2 )
 offset = Vector2( 32, -16 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 32, 32 )
-shape = SubResource( 1 )
-
-[node name="UnitController" parent="." instance=ExtResource( 3 )]
-position = Vector2( 31.7839, 148.325 )
+shape = SubResource( 2 )
 
 [node name="Vision" parent="." groups=[
 "player",
 ] instance=ExtResource( 4 )]
+visible = true
 position = Vector2( 30.2905, 1.7818 )
 scale = Vector2( 2, 2 )
+
+[node name="UnitController" parent="." instance=ExtResource( 3 )]
+position = Vector2( 31.7839, 148.325 )

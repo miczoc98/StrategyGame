@@ -1,0 +1,92 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://units/state_machine/state/gathering/Gathering.gd" type="Script" id=1]
+[ext_resource path="res://units/player_unit/Job.gd" type="Script" id=2]
+[ext_resource path="res://units/state_machine/StateMachine.gd" type="Script" id=3]
+[ext_resource path="res://units/player_unit/Unit2D.gd" type="Script" id=4]
+[ext_resource path="res://units/player_unit/Sprite.gd" type="Script" id=5]
+[ext_resource path="res://units/state_machine/state/gathering/Deposit.gd" type="Script" id=6]
+[ext_resource path="res://units/state_machine/state/idle/Idle.gd" type="Script" id=7]
+[ext_resource path="res://units/state_machine/state/gathering/Gather.gd" type="Script" id=8]
+[ext_resource path="res://units/player_unit/sprite.png" type="Texture" id=9]
+[ext_resource path="res://units/state_machine/state/exploring/Exploring.gd" type="Script" id=10]
+[ext_resource path="res://units/player_unit/attributes/PlayerAttributes.tscn" type="PackedScene" id=11]
+[ext_resource path="res://units/player_unit/navigation/Navigation.tscn" type="PackedScene" id=12]
+[ext_resource path="res://units/state_machine/state/navigating/Navigating.tscn" type="PackedScene" id=13]
+[ext_resource path="res://units/vision/Vision.tscn" type="PackedScene" id=14]
+[ext_resource path="res://units/state_machine/state/combat/Combat.tscn" type="PackedScene" id=15]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 21.6312
+
+[node name="Unit2D" type="KinematicBody2D" groups=[
+"player",
+"unit",
+]]
+use_parent_material = true
+z_index = 10
+input_pickable = true
+collision_mask = 14
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
+scale = Vector2( 3, 3 )
+texture = ExtResource( 9 )
+script = ExtResource( 5 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Attributes" parent="." instance=ExtResource( 11 )]
+
+[node name="Navigation" parent="." instance=ExtResource( 12 )]
+visible = false
+
+[node name="Job" type="Node2D" parent="."]
+script = ExtResource( 2 )
+job_change_willingness_time_multiplier = 5
+
+[node name="Timer" type="Timer" parent="Job"]
+autostart = true
+
+[node name="Vision" parent="." groups=[
+"player",
+] instance=ExtResource( 14 )]
+visible = true
+
+[node name="StateMachine" type="Node2D" parent="." groups=[
+"state_machine",
+]]
+script = ExtResource( 3 )
+starting_state = "Idle"
+
+[node name="Gathering" type="Node2D" parent="StateMachine"]
+visible = false
+script = ExtResource( 1 )
+
+[node name="Gather" type="Node2D" parent="StateMachine/Gathering"]
+script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Gathering/Gather"]
+
+[node name="Deposit" type="Node2D" parent="StateMachine/Gathering"]
+script = ExtResource( 6 )
+
+[node name="Combat" parent="StateMachine" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Exploring" type="Node2D" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Navigating" parent="StateMachine" instance=ExtResource( 13 )]
+
+[connection signal="mouse_entered" from="." to="Sprite" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="Sprite" method="_on_mouse_exited"]
+[connection signal="died" from="Attributes" to="." method="_on_died"]
+[connection signal="timeout" from="Job/Timer" to="Job" method="_on_job_change_timer_timeout"]
+[connection signal="enemy_detected" from="Vision" to="." method="_on_vision_enemy_detected"]
+[connection signal="timeout" from="StateMachine/Gathering/Gather/Timer" to="StateMachine/Gathering/Gather" method="_on_Timer_timeout"]

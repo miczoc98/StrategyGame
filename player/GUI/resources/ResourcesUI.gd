@@ -7,9 +7,7 @@ onready var units = $Panel/HBoxContainer/UnitCount
 
 onready var labels = {"wood": wood, "stone": stone, "food": food}
 
-func _ready():
-	yield(get_tree().get_nodes_in_group("player_controller")[0], "ready")
-	
+func init():
 	mediator.subscribe("resource_changed", funcref(self, "_on_resource_changed"))
 	mediator.subscribe("unit_count_changed", funcref(self, "_on_unit_count_changed"))
 

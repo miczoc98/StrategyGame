@@ -1,6 +1,5 @@
 extends TileMapWithResources
 
-signal stone_gathered()
 
 var STONE_TILE_ID := 5
 var MOUNTAIN_TILE_ID := 4
@@ -17,5 +16,4 @@ func gather(tile: Vector2) -> void:
 	if (stone_amount_by_tile[tile] <= 0):
 		set_cellv(tile, 4)
 		tiles.erase(tile)
-	emit_signal("stone_gathered")
 

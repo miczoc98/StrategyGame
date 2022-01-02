@@ -21,7 +21,7 @@ shader_param/noise4 = ExtResource( 8 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[node name="Node2D" type="Node2D"]
+[node name="FogPatch" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]

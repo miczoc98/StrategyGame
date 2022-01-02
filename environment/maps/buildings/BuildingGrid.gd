@@ -4,13 +4,12 @@ extends Node2D
 export var grid_size := 64
 
 signal object_placed(collision_cells)
+signal object_destroyed(collision_cells)
 
-func _ready():
-	yield(get_parent(), "ready")
-	
+func init():
 	for building in get_children():
 		var collider_shape = building.get_collision_rectangle()
-		emit_signal("object_placed", _get_colliding_cells(building.position + collider_shape[0], collider_shape[1]))	
+		emit_signal("object_placed", _get_colliding_cells(building.global_position + collider_shape[0], collider_shape[1]))
 
 
 func get_closest_cell_position(position: Vector2) -> Vector2:
@@ -22,12 +21,22 @@ func get_closest_cell(position: Vector2) -> Vector2:
 	return Vector2(int(position.x)/grid_size, int(position.y)/grid_size)
 
 
-func place_building(building: Building):
+func place_building(building: Building, parent: Building = null):
 	add_child(building)
-
+	
+	if parent != null:
+		parent.add_building(building)
+	
+	building.connect("destroyed", self, "_on_building_destroyed")
 	
 	var collider_shape = building.get_collision_rectangle()
-	emit_signal("object_placed", _get_colliding_cells(building.position + collider_shape[0], collider_shape[1]))
+	emit_signal("object_placed", _get_colliding_cells(building.global_position + collider_shape[0], collider_shape[1]))
+
+
+func _on_building_destroyed(building: Building):
+	var collider_shape = building.get_collision_rectangle()
+	emit_signal("object_destroyed", _get_colliding_cells(building.global_position + collider_shape[0], collider_shape[1]))
+
 
 func _get_colliding_cells(offset: Vector2, shape: Vector2) -> Array:
 	var colliding_cells = []  

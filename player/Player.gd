@@ -1,15 +1,25 @@
 extends Node2D
 class_name Player
 
-onready var mediator: = $Mediator
-onready var resources: = $Resources
+onready var mediator := $Mediator
+onready var resources := $Resources
 
-func _ready():
+var map: Map
+
+func init():
 	$Resources.mediator = mediator
 	
 	for GUI in $GUI.get_children():
 		GUI.mediator = mediator
+		GUI.init()
 	
-	for Controller in $Controllers.get_children():
-		Controller.mediator = mediator
-		Controller.player = self
+	$Controllers/UnitAssignment.resources = resources
+	
+	$Controllers/BuildingPlacement.map = map
+	$Controllers/BuildingPlacement.resources = resources
+	
+	for controller in $Controllers.get_children():
+		controller.mediator = mediator
+		controller.init()
+	
+	
