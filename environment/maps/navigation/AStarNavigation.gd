@@ -1,7 +1,7 @@
 class_name AStarNavigation
 extends Node2D
 
-const WALKABLE_CELLS_ID := 0
+const WALKABLE_TILE_ID := 0
 
 onready var _collision_probe: CollisionProbe = $CollisionProbe
 
@@ -21,21 +21,21 @@ func init():
 	_collision_probe.set_collision_mask(MaskCalculator.sum([2, 3, 4]))
 	_cell_size = ground_map.cell_size
 
-	var tiles = ground_map.get_used_cells_by_id(WALKABLE_CELLS_ID)
+	var cells = ground_map.get_used_cells_by_id(WALKABLE_TILE_ID)
 
-	for tile in tiles:
-		if (tree_map.get_cellv(tile) != -1):
+	for cell in cells:
+		if (tree_map.get_cellv(cell) != -1):
 			continue
 			
-		var weight = _calculate_weight(tile)
-		var position = _get_tile_position(tile)
+		var weight = _calculate_weight(cell)
+		var position = _get_cell_position(cell)
 		
 		_last_id += 1
 		_Astar.add_point(_last_id, position, weight)
-		_point_ids_by_position_in_tilemap[tile] = _last_id
+		_point_ids_by_position_in_tilemap[cell] = _last_id
 	
-	for tile in _point_ids_by_position_in_tilemap.keys():
-		_create_neighbours_connections(tile)
+	for cell in _point_ids_by_position_in_tilemap.keys():
+		_create_neighbours_connections(cell)
 
 
 func get_path_to_target(position: Vector2, target: Vector2):
@@ -51,7 +51,7 @@ func get_path_to_target(position: Vector2, target: Vector2):
 
 func add_node(cell_coordinates: Vector2) -> void:
 	_last_id += 1
-	_Astar.add_point(_last_id, _get_tile_position(position))
+	_Astar.add_point(_last_id, _get_cell_position(position))
 	_point_ids_by_position_in_tilemap[position] = _last_id
 	_create_neighbours_connections(position)
 
@@ -68,37 +68,37 @@ func enable_nodes(cell_coordinates: Array) -> void:
 			_Astar.set_point_disabled(_point_ids_by_position_in_tilemap[cell], false)
 
 
-func _calculate_weight(tile: Vector2) -> float:
-	if (mountain_map.get_cellv(tile) != -1):
+func _calculate_weight(cell: Vector2) -> float:
+	if (mountain_map.get_cellv(cell) != -1):
 		return 2.0
 	else:
 		return 1.0
 
 
-func _create_neighbours_connections(tile):
-	var neighbour_tiles = _get_neighbours(tile)
+func _create_neighbours_connections(cell):
+	var neighbour_cells = _get_neighbours(cell)
 	
-	for neighbour_tile in neighbour_tiles:
-		_connect_neighbour_if_exist(tile, neighbour_tile)
+	for neighbour_cell in neighbour_cells:
+		_connect_neighbour_if_exist(cell, neighbour_cell)
 
 
-func _connect_neighbour_if_exist(tile: Vector2, neighbour_tile: Vector2):
-	if (_point_ids_by_position_in_tilemap.has(neighbour_tile)):
-		_Astar.connect_points(_point_ids_by_position_in_tilemap[neighbour_tile],
-			_point_ids_by_position_in_tilemap[tile])
+func _connect_neighbour_if_exist(cell: Vector2, neighbour_cell: Vector2):
+	if (_point_ids_by_position_in_tilemap.has(neighbour_cell)):
+		_Astar.connect_points(_point_ids_by_position_in_tilemap[neighbour_cell],
+			_point_ids_by_position_in_tilemap[cell])
 
 
-func _get_neighbours(tile: Vector2):
-	var left_tile = Vector2(tile[0] - 1, tile[1])
-	var right_tile = Vector2(tile[0] + 1, tile[1])
-	var up_tile = Vector2(tile[0], tile[1] - 1)
-	var down_tile = Vector2(tile[0], tile[1] + 1)
+func _get_neighbours(cell: Vector2):
+	var left_cell = Vector2(cell[0] - 1, cell[1])
+	var right_cell = Vector2(cell[0] + 1, cell[1])
+	var up_cell = Vector2(cell[0], cell[1] - 1)
+	var down_cell = Vector2(cell[0], cell[1] + 1)
 	
-	return [left_tile, right_tile, up_tile, down_tile]
+	return [left_cell, right_cell, up_cell, down_cell]
 
 
-func _get_tile_position(tile: Vector2):
-	return Vector2((tile.x + 0.5)* _cell_size.x, (tile.y + 0.5) * _cell_size.y)
+func _get_cell_position(cell: Vector2):
+	return Vector2((cell.x + 0.5)* _cell_size.x, (cell.y + 0.5) * _cell_size.y)
 
 
 func _optimize_path(path: Array) -> Array:

@@ -1,5 +1,6 @@
-extends KinematicBody2D
 class_name Unit2D
+extends KinematicBody2D
+
 
 signal unit_died(unit)
 signal job_changed(unit, job)
@@ -21,7 +22,8 @@ func init():
 	
 	$Vision.enemy_groups = GroupRelations.get_enemies(self)
 	
-	$StateMachine/Gathering.navigation = map 
+	$StateMachine/Gathering.navigation = map
+	$StateMachine/Gathering/Gather.skills = attributes.stats
 	$StateMachine/Gathering/Deposit.deposit_location = owner_position
 	
 	$StateMachine/Exploring.fog_map = map.fog_map

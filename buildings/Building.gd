@@ -5,7 +5,7 @@ signal destroyed(object)
 
 var health := 10.0 
 var current_health := health
-var building_progress := 0
+
 onready var original_color = modulate
 
 var cost := {"wood": 50, "stone": 50}

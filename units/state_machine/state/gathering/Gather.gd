@@ -4,10 +4,11 @@ signal resource_gathered(type, amount)
 
 onready var _timer: Timer = $Timer
 
+var skills = {}
+
 var _gathering_range = 100
 var _current_resource: Gatherable
 var _resource_map: TileMapWithResources
-
 
 func enter(msg: Dictionary = {}) -> void:
 	if "resource" in msg:
@@ -18,7 +19,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func process(_delta: float) -> void:
 	if _is_resource_in_range():
-		_start_timer(1)
+		_start_timer(10/skills[_current_resource.skill_required])
 	else:
 		var closest_resource_tile = _resource_map.get_closest_tile(global_position).world_position
 		_timer.stop()

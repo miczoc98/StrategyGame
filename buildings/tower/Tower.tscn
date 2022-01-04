@@ -16,15 +16,6 @@ radius = 187.565
 use_parent_material = true
 script = ExtResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="HP" parent="." instance=ExtResource( 4 )]
-margin_left = -27.2964
-margin_top = -134.556
-margin_right = 92.7036
-margin_bottom = -114.556
-
 [node name="Sprite" type="Sprite" parent="."]
 use_parent_material = true
 texture = ExtResource( 2 )
@@ -33,6 +24,15 @@ offset = Vector2( 32, -32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 32.5637, 32.5637 )
 shape = SubResource( 1 )
+
+[node name="HP" parent="." instance=ExtResource( 4 )]
+margin_left = -27.2964
+margin_top = -134.556
+margin_right = 92.7036
+margin_bottom = -114.556
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="Vision" parent="." instance=ExtResource( 5 )]
 position = Vector2( 27.5461, -3.17838 )

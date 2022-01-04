@@ -6,11 +6,11 @@ signal job_changed(current_job)
 export var job_change_willingness_time_multiplier = 1
 export var job_change_willingness_skill_level_multiplier = 0.5
 export var job_change_willingness_requested_amount_multiplier = 3
+export var job_change_treshold = 50
 
 var attributes: Attributes
 
 var _requested_jobs := {}
-var _job_change_treshold = 50
 var _last_job_change_time_in_ms: float
 var _current_job := ""
 
@@ -26,7 +26,7 @@ func _on_job_change_timer_timeout():
 		
 		var job = Jobs.get_job(requested_job)
 		var job_change_willingness = _calculate_job_change_willingness(job, _requested_jobs[requested_job])
-		if job_change_willingness > _job_change_treshold:
+		if job_change_willingness > job_change_treshold:
 			_change_job(job)
 
 

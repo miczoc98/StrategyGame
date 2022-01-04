@@ -100,19 +100,9 @@ _global_script_classes=[ {
 "path": "res://data_types/jobs/Jobs.gd"
 }, {
 "base": "Reference",
-"class": "KinematicBehaviour",
-"language": "GDScript",
-"path": "res://movement/KinematicBehaviour.gd"
-}, {
-"base": "KinematicBehaviour",
-"class": "KinematicFlee",
-"language": "GDScript",
-"path": "res://movement/KinematicFlee.gd"
-}, {
-"base": "KinematicBehaviour",
 "class": "KinematicSeek",
 "language": "GDScript",
-"path": "res://movement/KinematicSeek.gd"
+"path": "res://units/player_unit/navigation/KinematicBehaviour/KinematicSeek.gd"
 }, {
 "base": "Building",
 "class": "Lair",
@@ -177,7 +167,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SteeringOutput",
 "language": "GDScript",
-"path": "res://movement/SteeringOutput.gd"
+"path": "res://units/player_unit/navigation/KinematicBehaviour/SteeringOutput.gd"
 }, {
 "base": "TileMap",
 "class": "TileMapWithResources",
@@ -202,7 +192,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "UnitNavigation",
 "language": "GDScript",
-"path": "res://units/player_unit/navigation/navigation.gd"
+"path": "res://units/player_unit/navigation/UnitNavigation.gd"
 }, {
 "base": "Node2D",
 "class": "Vision",
@@ -228,8 +218,6 @@ _global_script_class_icons={
 "Job": "",
 "JobSlider": "",
 "Jobs": "",
-"KinematicBehaviour": "",
-"KinematicFlee": "",
 "KinematicSeek": "",
 "Lair": "",
 "Map": "",
