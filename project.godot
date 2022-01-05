@@ -243,7 +243,7 @@ _global_script_class_icons={
 [application]
 
 config/name="StrategyGame"
-run/main_scene="res://scenes/stage1/Stage1.tscn"
+run/main_scene="res://scenes/title_screen/TitleScreen.tscn"
 config/icon="res://sprites/icon.png"
 
 [autoload]

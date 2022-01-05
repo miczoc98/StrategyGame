@@ -1,22 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/controllers/BuildingPlacement.gd" type="Script" id=1]
 [ext_resource path="res://player/Resources.gd" type="Script" id=2]
 [ext_resource path="res://player/controllers/BuildingSelector.gd" type="Script" id=3]
-[ext_resource path="res://player/GUI/unit_assignment/UnitAssignment.gd" type="Script" id=4]
 [ext_resource path="res://player/controllers/UnitAssignment.gd" type="Script" id=5]
-[ext_resource path="res://player/GUI/unit_details/UnitDetails.gd" type="Script" id=6]
-[ext_resource path="res://player/GUI/objective/Objective.gd" type="Script" id=7]
 [ext_resource path="res://player/Player.gd" type="Script" id=8]
-[ext_resource path="res://player/GUI/log/Log.gd" type="Script" id=9]
 [ext_resource path="res://player/GUI/unit_details/UnitDetails.tscn" type="PackedScene" id=10]
 [ext_resource path="res://player/GUI/building_mode/BuildingMode.tscn" type="PackedScene" id=11]
 [ext_resource path="res://player/GUI/objective/Objective.tscn" type="PackedScene" id=12]
 [ext_resource path="res://player/GUI/resources/ResourcesUI.tscn" type="PackedScene" id=13]
 [ext_resource path="res://player/GUI/unit_assignment/UnitAssignment.tscn" type="PackedScene" id=14]
 [ext_resource path="res://player/GUI/log/Log.tscn" type="PackedScene" id=15]
-[ext_resource path="res://player/GUI/building_mode/BuildingMode.gd" type="Script" id=16]
-[ext_resource path="res://player/GUI/resources/ResourcesUI.gd" type="Script" id=17]
 [ext_resource path="res://player/GUI/GUI.gd" type="Script" id=18]
 [ext_resource path="res://player/controllers/UnitSelector.gd" type="Script" id=19]
 [ext_resource path="res://algorithms/Mediator.gd" type="Script" id=20]
@@ -39,23 +33,17 @@ script = ExtResource( 2 )
 position = Vector2( -860.813, -773.977 )
 script = ExtResource( 18 )
 
-[node name="UnitDetails" type="CanvasLayer" parent="GUI" instance=ExtResource( 10 )]
-script = ExtResource( 6 )
+[node name="UnitDetails" parent="GUI" instance=ExtResource( 10 )]
 
-[node name="Resources" type="CanvasLayer" parent="GUI" instance=ExtResource( 13 )]
-script = ExtResource( 17 )
+[node name="Resources" parent="GUI" instance=ExtResource( 13 )]
 
-[node name="BuildingMode" type="CanvasLayer" parent="GUI" instance=ExtResource( 11 )]
-script = ExtResource( 16 )
+[node name="Building" parent="GUI" instance=ExtResource( 11 )]
 
-[node name="UnitAssignment" type="CanvasLayer" parent="GUI" instance=ExtResource( 14 )]
-script = ExtResource( 4 )
+[node name="UnitAssignment" parent="GUI" instance=ExtResource( 14 )]
 
-[node name="Objective" type="CanvasLayer" parent="GUI" instance=ExtResource( 12 )]
-script = ExtResource( 7 )
+[node name="Objective" parent="GUI" instance=ExtResource( 12 )]
 
-[node name="Log" type="CanvasLayer" parent="GUI" instance=ExtResource( 15 )]
-script = ExtResource( 9 )
+[node name="Log" parent="GUI" instance=ExtResource( 15 )]
 
 [node name="Controllers" type="Node2D" parent="."]
 

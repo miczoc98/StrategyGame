@@ -54,7 +54,6 @@ func _on_unit_died():
 
 func _on_resource_deposited(name: String, amount: int) -> void:
 	change_resource_amount(name, amount)
-	print("resource deposited")
 
 
 func _on_house_placed():
